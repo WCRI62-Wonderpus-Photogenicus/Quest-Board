@@ -4,6 +4,9 @@
  const Homepage = () => {
    return (
     <div id='homepage-container'>
+      <div id='progress-container'>Progress</div>
+      <div id='task-list-container'>Tasks</div>
+     
     <Board />
     </div>
    )

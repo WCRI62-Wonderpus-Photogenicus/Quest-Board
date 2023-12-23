@@ -1,0 +1,26 @@
+#homepage-container {
+    border: 4px solid rgb(246, 8, 8);
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 1fr 1fr; */
+    grid-template-areas: 
+    "progress progress"
+    "task-list board";
+    /* grid-template-rows: 50px 1fr 30px;
+    grid-template-columns: 150px 1fr; */
+}
+
+#progress-container {
+    grid-area: "progress";
+    border: 2px solid black;
+}
+
+#task-list-container {
+    grid-area: "task-list";
+    border: 2px solid black;
+
+}
+#board-container {
+    grid-area: "board";
+    border: 2px solid rgb(86, 86, 86);
+}
