@@ -17,3 +17,13 @@ import * as types from '../constants/actionTypes';
 //   type: types.ADD_CARD,
 //   payload: marketId,
 // });
+
+export const addTaskInfoActionCreator = (taskId) => ({
+  type: types.ADD_TASK_INFO,
+  payload: taskId,
+});
+
+export const deleteTaskActionCreator = (taskId) => ({
+  type: types.DELETE_TASK,
+  payload: taskId,
+});
