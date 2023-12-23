@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from 'react';
 
 const App = () => {
     return (
@@ -9,4 +8,4 @@ const App = () => {
     )
 }
 
-export default App
+export default App;
