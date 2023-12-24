@@ -1,34 +1,51 @@
+
+
+* {
+    overflow: hidden;
+}
+
 #homepage-container {
-    border: 4px solid rgb(246, 8, 8);
+    overflow-y: hidden;
+    height: 95vh;
     display: grid;
-    grid-template-columns: 1fr;
-    /* grid-template-rows: 1fr 1fr; */
-    grid-template-areas: 
-    "progress progress"
+    grid-template-columns: 0.20fr 1fr;
+    grid-template-rows: .05fr .02fr 1fr;
+    grid-gap: 5px;
+    grid-template-areas:
+    "title title"
+    "progress status"
     "task-list board";
-    /* grid-template-rows: 50px 1fr 30px;
-    grid-template-columns: 150px 1fr; */
+}
+
+#title {
+    grid-area: title;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #progress-container {
-    grid-area: "progress";
+    display: flex;
+    justify-content: center;
+
+    grid-area: progress;
+    border: 2px solid black;
+}
+
+#status-bar {
+    grid-area: status;
+    background-color: mediumspringgreen; 
     border: 2px solid black;
 }
 
 #task-list-container {
-    grid-area: "task-list";
+    grid-area: task-list;
     border: 2px solid black;
 
 }
-#board-container {
-    grid-area: "board";
+#board-container { 
+    grid-area: board;
     border: 2px solid rgb(86, 86, 86);
-}
-
-.taskListItem{
-    border: 2px solid green
-}
-
-.taskListContainer{
-    border: 2px solid blue
 }
