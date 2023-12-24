@@ -24,3 +24,11 @@
     grid-area: "board";
     border: 2px solid rgb(86, 86, 86);
 }
+
+.taskListItem{
+    border: 2px solid green
+}
+
+.taskListContainer{
+    border: 2px solid blue
+}
