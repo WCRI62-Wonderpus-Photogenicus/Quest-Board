@@ -4,6 +4,18 @@
     overflow: hidden;
 }
 
+.draggable {
+  width: 25%;
+  height: 30%;
+  margin: 10px;
+  background-color: #29e;
+  color: white;
+  border-radius: 0.5em;
+  touch-action: none;
+  user-select: none;
+  box-shadow: 5px 5px 15px 5px rgb(85, 85, 85)
+}
+
 #homepage-container {
     overflow-y: hidden;
     height: 95vh;
@@ -45,7 +57,29 @@
     border: 2px solid black;
 
 }
-#board-container { 
+#board-container {
+    display: flex;
     grid-area: board;
     border: 2px solid rgb(86, 86, 86);
+}
+
+#task-list-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+}
+
+.task-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 30px;
+  margin: 5px;
+  font-size: 10px;
+  border: 1px solid black;
+  /* cursor: 'pointer' */
+}
+
+.task-list-item :hover{
+    cursor:'pointer'
 }

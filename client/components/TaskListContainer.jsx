@@ -1,22 +1,24 @@
 import React from "react";
 import TaskListItem from "./TaskListItem.jsx"
 
+import{addNewTaskActionCreator, addNewTaskNameActionCreator} from'../actions/actions.js'
+
+import {useDispatch, useSelector} from 'react-redux';
+
 const TaskListContainer = () => {
-const taskList = [
-  {id: 1, name: "Eat", desc: "eat food"},
-  {id: 2, name: "Code", desc: "test"},
-  {id: 3, name: "Sleep", desc: "test2"},
-  {id: 4, name: "Repeat", desc: "test3"}
-]
+const dispatch = useDispatch()
+const newTaskName = useSelector((state)=> state.projects.newTaskName)
+const taskList = useSelector((state) => state.projects.taskList)
 
 return(
-  <div className="taskListContainer">
-    {taskList.map((el, i) => {
-      <TaskListItem id={i} name={el.name} desc={el.desc} />
-    })}
+  <div id="task-list-container">
+    <input type='text' onChange={(e) => dispatch(addNewTaskNameActionCreator(e.target.value))} value={newTaskName}/>
+    <button onClick={()=>dispatch(addNewTaskActionCreator())}>Add Task</button>
+    {taskList.map((task, i) => (
+      <TaskListItem key={i} id={i} name={task.name}/>
+    ))}
   </div>
 )
-
 } 
 
 export default TaskListContainer;

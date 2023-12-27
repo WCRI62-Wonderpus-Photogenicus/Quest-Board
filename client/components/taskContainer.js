@@ -1,27 +1,25 @@
 import React from 'react';
 import {
-  updateTaskActionCreator,
-  deletecardTaskActionCreator,
-  addTaskInfoActionCreator,
+  toggleTaskModalActionCreator
 } from '../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-const taskContainer = ({ task }) => {
-  const { id, description } = task;
+const TaskContainer = () => {
   const dispatch = useDispatch();
 
   return (
     <div className='taskContainer'>
-      <div className='task-description'>
+      <button onClick={() => dispatch(toggleTaskModalActionCreator(false))} >CLOSE</button>
+      {/* <div className='task-description'>
         Task Number: {id}, Task Information: {description}
       </div>
-      <form className='additional-task-info'>
+      <form className='additional-task-info'> */}
         {/* <input type='text' onChange = {}>Enter Additional Info Here</input> */}
         {/* In state, will have a tasklist of objects, 
         within each object, when the submit is clicked, 
         will update state at the individual 
         taskList additional information key */}
-        <button
+        {/* <button
           type='submit'
           onClick={() => dispatch(addTaskInfoActionCreator(id))}
         >
@@ -33,7 +31,9 @@ const taskContainer = ({ task }) => {
         onClick={() => dispatch(deletecardTaskActionCreator(id))}
       >
         Delete Task
-      </button>
+      </button> */}
     </div>
   );
 };
+
+export default TaskContainer

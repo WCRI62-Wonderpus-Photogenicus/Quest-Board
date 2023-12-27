@@ -18,12 +18,26 @@ import * as types from '../constants/actionTypes';
 //   payload: marketId,
 // });
 
-export const addTaskInfoActionCreator = (taskId) => ({
-  type: types.ADD_TASK_INFO,
-  payload: taskId,
+// export const addTaskInfoActionCreator = (taskId) => ({
+//   type: types.ADD_TASK_INFO,
+//   payload: taskId,
+// });
+
+// export const deleteTaskActionCreator = (taskId) => ({
+//   type: types.DELETE_TASK,
+//   payload: taskId,
+// });
+
+export const addNewTaskActionCreator = () => ({
+  type: types.ADD_NEW_TASK,
 });
 
-export const deleteTaskActionCreator = (taskId) => ({
-  type: types.DELETE_TASK,
-  payload: taskId,
+export const addNewTaskNameActionCreator = (newTaskName) => ({
+  type: types.ADD_NEW_TASK_NAME,
+  payload: newTaskName
+});
+
+export const toggleTaskModalActionCreator = (bool) => ({
+  type: types.TOGGLE_TASK_MODAL,
+  payload: bool
 });
