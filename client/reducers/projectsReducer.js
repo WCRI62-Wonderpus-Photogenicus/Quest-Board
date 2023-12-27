@@ -17,9 +17,38 @@ const initialState = {
   //   marketList: [],
   //   lastMarketId: 10000,
   //   newLocation: '',
+  taskList: [
+  ],
+  newTaskName: '',
+  taskModalBoolean: false,
 };
 
 const projectsReducer = (state = initialState, action) => {
+  switch(action.type){
+    case types.ADD_NEW_TASK:
+      const newTaskName = state.newTaskName
+      console.log('in reducer')
+      return {
+        ...state,
+        taskList: state.taskList.concat({
+          name: newTaskName,
+        }),
+        newTaskName: '', 
+      }
+    case types.ADD_NEW_TASK_NAME:
+      return {
+        ...state, 
+        newTaskName: action.payload
+      }    
+    case types.TOGGLE_TASK_MODAL:
+      return {
+        ...state, 
+        taskModalBoolean: action.payload
+      }      
+    default: 
+      return state;
+  }
+}
   //   let marketList;
   //   let lastMarketId = state.lastMarketId;
   //   let totalMarkets = state.totalMarkets;
@@ -53,6 +82,5 @@ const projectsReducer = (state = initialState, action) => {
   //     return state;
   //   }
   // }
-};
 
 export default projectsReducer;

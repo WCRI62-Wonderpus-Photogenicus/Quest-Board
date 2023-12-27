@@ -1,11 +1,11 @@
 import React from 'react';
 import TaskCard from './taskcards.jsx';
 import interact from 'interactjs'
-
+import {useDispatch, useSelector} from 'react-redux'
 
 const Board = () => {
-
-    // from interact.js (https://interactjs.io/)
+    // from interact.js (https://interactjs.io/) 
+    // ignore lines 10-49
     // target elements with the "draggable" class
     interact('.draggable')
         .draggable({
@@ -52,13 +52,20 @@ const Board = () => {
 
 
 
-    //mock database
-    let mockdb = [1, 2, 3, 4, 5, 6]
+    
+    //selecting task from state
+    const taskList = useSelector((state) => state.projects.taskList)
+    console.log('this is the current task list', taskList)
+   
     //cards to be rendered
-    let cards = []
-    for (let i = 0; i < mockdb.length; i++) {
-        cards.push(<TaskCard key={i} mockdb={mockdb[i]} />)
-    }
+    let cards = [];
+
+    // max length of the board so it doesnt overflow
+    const maxLengthOfTaskList = Math.min(taskList.length, 15);
+
+    for (let i = 0; i < maxLengthOfTaskList; i++) {
+    cards.push(<TaskCard key={i} taskList={taskList[i]} />);
+  }
 
     return (
         <div id="board-container">
