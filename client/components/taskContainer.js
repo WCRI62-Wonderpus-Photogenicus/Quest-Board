@@ -19,7 +19,6 @@ const TaskContainer = (props) => {
   }, [props.id]);
   
  
-
   return (
 
     <div className='task-modal'>
