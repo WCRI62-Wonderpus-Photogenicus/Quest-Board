@@ -21,3 +21,7 @@ export const ADD_NEW_TASK = 'ADD_NEW_TASK';
 export const ADD_NEW_TASK_NAME = 'ADD_NEW_TASK_NAME';
 
 export const TOGGLE_TASK_MODAL = 'TOGGLE_TASK_MODAL';
+
+export const EDIT_TASK_DESC = 'EDIT_TASK_DESC';
+
+

@@ -37,7 +37,12 @@ export const addNewTaskNameActionCreator = (newTaskName) => ({
   payload: newTaskName
 });
 
-export const toggleTaskModalActionCreator = (bool) => ({
+export const toggleTaskModalActionCreator = (bool, id) => ({
   type: types.TOGGLE_TASK_MODAL,
-  payload: bool
+  payload: {bool: bool, id: id}
+});
+
+export const editTaskDescActionCreator = (id, desc) => ({
+  type: types.EDIT_TASK_DESC,
+  payload: {id: id, desc: desc}
 });

@@ -1,6 +1,8 @@
 import React from 'react';
 import TaskCard from './taskcards.jsx';
 import interact from 'interactjs'
+import { useSelector, useDispatch } from 'react-redux';
+import TaskContainer from './taskContainer.js';
 
 
 const Board = () => {
@@ -60,8 +62,13 @@ const Board = () => {
         cards.push(<TaskCard key={i} mockdb={mockdb[i]} />)
     }
 
+    const toggleTaskModal = useSelector((state) => state.projects.taskModalBoolean);
+    const modalId = useSelector((state) => state.projects.modalId);
     return (
         <div id="board-container">
+          { 
+          (toggleTaskModal) ? <div className='task-modal'> <TaskContainer id={modalId}/> </div> : <></>
+          }
             {cards}
         </div>
     )

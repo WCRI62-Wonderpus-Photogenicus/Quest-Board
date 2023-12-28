@@ -13,7 +13,8 @@
   border-radius: 0.5em;
   touch-action: none;
   user-select: none;
-  box-shadow: 5px 5px 15px 5px rgb(85, 85, 85)
+  box-shadow: 5px 5px 15px 5px rgb(85, 85, 85);
+  z-index: 1
 }
 
 #homepage-container {
@@ -48,6 +49,7 @@
 
 #status-bar {
     grid-area: status;
+    height: 20px;
     background-color: mediumspringgreen; 
     border: 2px solid black;
 }
@@ -58,9 +60,52 @@
 
 }
 #board-container {
+    position: relative;
     display: flex;
     grid-area: board;
     border: 2px solid rgb(86, 86, 86);
+    justify-content: center;
+}
+
+/* .task-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50%;
+  width: 50%;
+  border: solid 3px green;
+  z-index: 2;
+  position: absolute;
+  align-self: center;
+  background-color: white;
+} */
+
+.task-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the modal */
+  width: 60%; /* Adjust as needed */
+  height: 60%; /* Adjust as needed */
+  border: 3px solid green;
+  background-color: white;
+  padding: 20px;
+  z-index: 2; /* Ensure it's on top of other components */
+  overflow: auto;
+}
+
+/* .desc-input{
+  height: 50%;
+  width: 50%;
+  margin: 5px;
+} */
+
+.desc-input {
+  width: 90%; 
+  min-height: 80px; 
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
 }
 
 #task-list-container {
@@ -83,3 +128,4 @@
 .task-list-item :hover{
     cursor:'pointer'
 }
+
