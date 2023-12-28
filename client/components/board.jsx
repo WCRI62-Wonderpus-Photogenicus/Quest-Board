@@ -1,6 +1,7 @@
 import React from 'react';
 import TaskCard from './taskcards.jsx';
 import interact from 'interactjs'
+
 import { useSelector, useDispatch } from 'react-redux';
 import TaskContainer from './taskContainer.js';
 
@@ -56,13 +57,20 @@ const Board = () => {
 
 
 
-    //mock database
-    let mockdb = [1, 2, 3, 4, 5, 6]
+    
+    //selecting task from state
+    const taskList = useSelector((state) => state.projects.taskList)
+    console.log('this is the current task list', taskList)
+   
     //cards to be rendered
-    let cards = []
-    for (let i = 0; i < mockdb.length; i++) {
-        cards.push(<TaskCard key={i} mockdb={mockdb[i]} />)
-    }
+    let cards = [];
+
+    // max length of the board so it doesnt overflow
+    const maxLengthOfTaskList = Math.min(taskList.length, 15);
+
+    for (let i = 0; i < maxLengthOfTaskList; i++) {
+    cards.push(<TaskCard key={i} taskList={taskList[i]} />);
+  }
 
     const toggleTaskModal = useSelector((state) => state.projects.taskModalBoolean);
     const modalId = useSelector((state) => state.projects.modalId);

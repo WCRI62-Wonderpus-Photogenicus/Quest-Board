@@ -13,6 +13,7 @@ const taskList = useSelector((state) => state.projects.taskList)
 return(
   <div id="task-list-container">
     <input type='text' onChange={(e) => dispatch(addNewTaskNameActionCreator(e.target.value))} value={newTaskName}/>
+
     <button onClick={()=>dispatch(addNewTaskActionCreator())}>Add Quest</button>
     {
     taskList.map((task, i) => (<TaskListItem key={i} id={i} name={task.name}/>))

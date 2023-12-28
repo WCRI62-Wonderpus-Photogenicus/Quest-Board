@@ -19,7 +19,7 @@
 
 #homepage-container {
     overflow-y: hidden;
-    height: 95vh;
+    height: 98vh;
     display: grid;
     grid-template-columns: 0.20fr 1fr;
     grid-template-rows: .05fr .02fr 1fr;
@@ -42,7 +42,6 @@
 #progress-container {
     display: flex;
     justify-content: center;
-
     grid-area: progress;
     border: 2px solid black;
 }
@@ -65,6 +64,7 @@
     grid-area: board;
     border: 2px solid rgb(86, 86, 86);
     justify-content: center;
+    flex-wrap:wrap; 
     /* aspect-ratio: 3 / 2; 
     overflow: hidden;  */
 }
@@ -141,8 +141,3 @@
   border: 1px solid black;
   /* cursor: 'pointer' */
 }
-
-.task-list-item :hover{
-    cursor:'pointer'
-}
-

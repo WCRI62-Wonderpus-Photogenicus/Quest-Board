@@ -8,11 +8,15 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
 
     
-    // const toggleTaskModal = useSelector((state) => {return state.projects.taskModalBoolean});
+    const toggleTaskModal = useSelector((state) => {return state.projects.taskModalBoolean});
+
     
     return (
         <div id="App"> 
             <Homepage />
+          { 
+            (toggleTaskModal) ? <TaskContainer /> : <></>
+          }
         </div>
     )
 }
