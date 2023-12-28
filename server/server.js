@@ -1,6 +1,6 @@
 const express = require('express');
-
-
+const apiRouter = require('./routes/api');
+const path = require('path');
 const PORT = 3000;
 const app = express();
 
@@ -9,8 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // set up routing to routes here
 
-app.get("/", (req, res) => res.status(200).json("working!"))
-
+app.use('/', apiRouter);
 
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -24,5 +23,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {console.log("Listening on Port: 3000")});
-
-// push test - isaac 2

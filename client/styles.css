@@ -45,6 +45,11 @@
   border: 2px solid black;
 }
 
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
 #status-bar {
   grid-area: status;
   height: 20px;
@@ -142,4 +147,10 @@
 
 .task-list-item :hover {
   cursor: 'pointer';
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  border: solid 3px red;
 }
