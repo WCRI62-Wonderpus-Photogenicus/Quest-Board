@@ -1,7 +1,5 @@
-
-
 * {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .draggable {
@@ -14,58 +12,58 @@
   touch-action: none;
   user-select: none;
   box-shadow: 5px 5px 15px 5px rgb(85, 85, 85);
-  z-index: 1
+  z-index: 1;
 }
 
 #homepage-container {
-    overflow-y: hidden;
-    height: 95vh;
-    display: grid;
-    grid-template-columns: 0.20fr 1fr;
-    grid-template-rows: .05fr .02fr 1fr;
-    grid-gap: 5px;
-    grid-template-areas:
-    "title title"
-    "progress status"
-    "task-list board";
+  overflow-y: hidden;
+  height: 95vh;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 0.05fr 0.02fr 1fr;
+  grid-gap: 5px;
+  grid-template-areas:
+    'title title'
+    'progress status'
+    'task-list board';
 }
 
 #title {
-    grid-area: title;
-    border: 2px solid black;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
+  grid-area: title;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #progress-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    grid-area: progress;
-    border: 2px solid black;
+  grid-area: progress;
+  border: 2px solid black;
 }
 
 #status-bar {
-    grid-area: status;
-    height: 20px;
-    background-color: mediumspringgreen; 
-    border: 2px solid black;
+  grid-area: status;
+  height: 20px;
+  background-color: mediumspringgreen;
+  border: 2px solid black;
 }
 
 #task-list-container {
-    grid-area: task-list;
-    border: 2px solid black;
-
+  grid-area: task-list;
+  border: 2px solid black;
 }
 #board-container {
-    position: relative;
-    display: flex;
-    grid-area: board;
-    border: 2px solid rgb(86, 86, 86);
-    justify-content: center;
-    /* aspect-ratio: 3 / 2; 
+  position: relative;
+  display: flex;
+  grid-area: board;
+  border: 2px solid rgb(86, 86, 86);
+  justify-content: center;
+  flex-wrap: wrap;
+  /* aspect-ratio: 3 / 2; 
     overflow: hidden;  */
 }
 
@@ -118,8 +116,8 @@
 } */
 
 .desc-input {
-  width: 90%; 
-  min-height: 80px; 
+  width: 90%;
+  min-height: 80px;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -142,7 +140,6 @@
   /* cursor: 'pointer' */
 }
 
-.task-list-item :hover{
-    cursor:'pointer'
+.task-list-item :hover {
+  cursor: 'pointer';
 }
-
