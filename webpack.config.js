@@ -22,7 +22,12 @@ module.exports = {
           {
             test: /.(css|scss)$/,
             exclude: /node_modules/,
-            use: ['style-loader', 'css-loader'],
+            use: [{
+              loader:'style-loader'
+            }, 
+            {
+              loader:'css-loader'
+            },],
           }
         ],
       },
