@@ -46,3 +46,8 @@ export const editTaskDescActionCreator = (id, desc) => ({
   type: types.EDIT_TASK_DESC,
   payload: {id: id, desc: desc}
 });
+
+export const deleteTaskActionCreator = (id) => ({
+  type: types.DELETE_TASK,
+  payload: id
+});

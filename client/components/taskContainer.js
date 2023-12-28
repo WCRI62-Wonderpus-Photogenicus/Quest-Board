@@ -3,7 +3,7 @@ import {
   toggleTaskModalActionCreator
 } from '../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { editTaskDescActionCreator } from '../actions/actions';
+import { editTaskDescActionCreator, deleteTaskActionCreator } from '../actions/actions';
 
 
 const TaskContainer = (props) => {
@@ -17,10 +17,15 @@ const TaskContainer = (props) => {
     setDescText(taskList[props.id].desc);
   }, [props.id]);
   
+ 
+
   return (
-    <div className='taskContainer'>
-      <button onClick={() => dispatch(toggleTaskModalActionCreator(false))} >CLOSE</button>
-      <p>{props.id}</p>
+    <div className='task-modal'>
+      <div className='modal-header'>
+        <button onClick={() => dispatch(deleteTaskActionCreator(props.id))}>Delete</button>
+        <button onClick={() => dispatch(toggleTaskModalActionCreator(false))}>CLOSE</button>
+      </div>  
+      <p>{taskList[props.id].name}</p>
       <p>{descText}</p>
 
 

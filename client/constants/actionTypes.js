@@ -24,4 +24,6 @@ export const TOGGLE_TASK_MODAL = 'TOGGLE_TASK_MODAL';
 
 export const EDIT_TASK_DESC = 'EDIT_TASK_DESC';
 
+export const DELETE_TASK = 'DELETE_TASK';
+
 

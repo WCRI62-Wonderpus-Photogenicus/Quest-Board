@@ -68,6 +68,17 @@ const projectsReducer = (state = initialState, action) => {
       return {
         ...state, 
         taskList: updatedTaskList
+      }
+    case types.DELETE_TASK:
+      console.log(state.taskList)
+      const prunedTaskList = state.taskList.filter((el, i) => i !== action.payload)
+      console.log(prunedTaskList)
+
+
+      return {
+        ...state, 
+        taskList: prunedTaskList,
+        taskModalBoolean: false
       }          
     default: 
       return state;

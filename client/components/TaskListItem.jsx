@@ -6,9 +6,9 @@ const TaskListItem = (props) => {
   const dispatch = useDispatch()
   const renderTab = useSelector((state)=> state.projects.taskModalBoolean)
   return (
-    <div className="task-list-item">
+    <div className="task-list-item" onClick={() => { dispatch(toggleTaskModalActionCreator(true, props.id))}}>
       <p>{props.id + 1}. {props.name}</p>
-      <button onClick={() => { dispatch(toggleTaskModalActionCreator(true, props.id))}}>test</button>
+      {/* <button onClick={() => { dispatch(toggleTaskModalActionCreator(true, props.id))}}>test</button> */}
     </div>
   )
 }
