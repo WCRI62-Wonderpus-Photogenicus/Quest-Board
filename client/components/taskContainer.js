@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editTaskDescActionCreator, deleteTaskActionCreator } from '../actions/actions';
 
 
-
 const TaskContainer = (props) => {
   const dispatch = useDispatch();
 
@@ -20,7 +19,6 @@ const TaskContainer = (props) => {
   
  
   return (
-
     <div className='task-modal'>
       <div className='modal-header'>
         <button onClick={() => dispatch(deleteTaskActionCreator(props.id))}>Delete</button>
@@ -39,3 +37,48 @@ const TaskContainer = (props) => {
 };
 
 export default TaskContainer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* <div className='task-description'>
+        Task Number: {id}, Task Information: {description}
+      </div>
+      <form className='additional-task-info'> */}
+        {/* <input type='text' onChange = {}>Enter Additional Info Here</input> */}
+        {/* In state, will have a tasklist of objects, 
+        within each object, when the submit is clicked, 
+        will update state at the individual 
+        taskList additional information key */}
+        {/* <button
+          type='submit'
+          onClick={() => dispatch(addTaskInfoActionCreator(id))}
+        >
+          Submit Task Changes
+        </button>
+      </form>
+      <button
+        className='delete-task'
+        onClick={() => dispatch(deletecardTaskActionCreator(id))}
+      >
+        Delete Task
+      </button> */}

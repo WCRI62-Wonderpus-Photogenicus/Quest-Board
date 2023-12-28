@@ -12,7 +12,6 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-
   taskList: [],
   newTaskName: '',
   taskModalBoolean: false,
@@ -85,4 +84,38 @@ const projectsReducer = (state = initialState, action) => {
       return state;
   }
 }
+  //   let marketList;
+  //   let lastMarketId = state.lastMarketId;
+  //   let totalMarkets = state.totalMarkets;
+  //   let totalCards = state.totalCards;
+  // switch (action.type) {
+  //   case types.ADD_MARKET: {
+  //     // increment lastMarketId and totalMarkets counters
+  //     totalMarkets++;
+  //     totalCards++;
+  //     // create the new market object from provided data
+  //     const newMarket = {
+  //       // what goes in here?
+  //       id: lastMarketId++,
+  //       location: state.newLocation,
+  //       cards: 1,
+  //     };
+  //     // push the new market onto a copy of the market list
+  //     marketList = state.marketList.slice();
+  //     marketList.push(newMarket);
+  //     // return updated state
+  //     return {
+  //       ...state,
+  //       marketList,
+  //       lastMarketId,
+  //       totalMarkets,
+  //       totalCards,
+  //       newLocation: '',
+  //     };
+  //   }
+  //   default: {
+  //     return state;
+  //   }
+  // }
+
 export default projectsReducer;
