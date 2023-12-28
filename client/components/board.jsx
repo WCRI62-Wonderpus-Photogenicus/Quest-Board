@@ -2,8 +2,13 @@ import React from 'react';
 import TaskCard from './taskcards.jsx';
 import interact from 'interactjs'
 
+import { useSelector, useDispatch } from 'react-redux';
+import TaskContainer from './taskContainer.js';
+
 
 const Board = () => {
+
+  const imgURL = "https://cdn.discordapp.com/attachments/1106400138143997952/1189797718831398972/umlaut42_wooden_framed_blank_fantasy_quest_board_wooden_frame_s_ad8c856b-9c0a-48ae-8d96-985e3b6a1b2e.png?ex=659f7879&is=658d0379&hm=4da8ac7b153d9b55aabb46da7403ced49166581c9533d68a4a4972af2891e360&"
 
     // from interact.js (https://interactjs.io/)
     // target elements with the "draggable" class
@@ -48,20 +53,29 @@ const Board = () => {
         target.setAttribute('data-y', y)
     }
 
-
-
-
-
-    //mock database
-    let mockdb = [1, 2, 3, 4, 5, 6]
+    
+    //selecting task from state
+    const taskList = useSelector((state) => state.projects.taskList)
+    console.log('this is the current task list', taskList)
+   
     //cards to be rendered
-    let cards = []
-    for (let i = 0; i < mockdb.length; i++) {
-        cards.push(<TaskCard key={i} mockdb={mockdb[i]} />)
-    }
+    let cards = [];
 
+    // max length of the board so it doesnt overflow
+    const maxLengthOfTaskList = Math.min(taskList.length, 15);
+
+    for (let i = 0; i < maxLengthOfTaskList; i++) {
+    cards.push(<TaskCard key={i} taskList={taskList[i]} />);
+  }
+
+    const toggleTaskModal = useSelector((state) => state.projects.taskModalBoolean);
+    const modalId = useSelector((state) => state.projects.modalId);
     return (
         <div id="board-container">
+          {/* <img src={imgURL} alt="Bulletin Board Background"></img> */}
+          { 
+          (toggleTaskModal) ? <div> <TaskContainer id={modalId}/> </div> : <></>
+          }
             {cards}
         </div>
     )
