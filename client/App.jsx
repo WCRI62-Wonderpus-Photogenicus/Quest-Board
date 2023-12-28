@@ -9,6 +9,7 @@ const App = () => {
 
     
     const toggleTaskModal = useSelector((state) => {return state.projects.taskModalBoolean});
+
     
     return (
         <div id="App"> 

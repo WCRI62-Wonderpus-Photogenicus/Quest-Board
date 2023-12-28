@@ -5,22 +5,17 @@
 }
 
 .draggable {
-  /* width: 240px;
-  height: 260px; */
-  
-  width: 18%;
+  width: 25%;
   height: 30%;
-
   margin: 10px;
   background-color: #29e;
   color: white;
   border-radius: 0.5em;
   touch-action: none;
   user-select: none;
-  box-shadow: 5px 5px 15px 5px rgb(85, 85, 85)
+  box-shadow: 5px 5px 15px 5px rgb(85, 85, 85);
+  z-index: 1
 }
-
-  
 
 #homepage-container {
     overflow-y: hidden;
@@ -53,6 +48,7 @@
 
 #status-bar {
     grid-area: status;
+    height: 20px;
     background-color: mediumspringgreen; 
     border: 2px solid black;
 }
@@ -62,12 +58,71 @@
     border: 2px solid black;
 
 }
-
 #board-container {
-    grid-area: board;
+    position: relative;
     display: flex;
-    flex-wrap: wrap;     /* wrap makes it so cards start on a new row  */
+    grid-area: board;
     border: 2px solid rgb(86, 86, 86);
+    justify-content: center;
+    flex-wrap:wrap; 
+    /* aspect-ratio: 3 / 2; 
+    overflow: hidden;  */
+}
+
+/* #board-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+ */
+
+/* .task-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50%;
+  width: 50%;
+  border: solid 3px green;
+  z-index: 2;
+  position: absolute;
+  align-self: center;
+  background-color: white;
+} */
+
+.task-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the modal */
+  width: 60%; /* Adjust as needed */
+  height: 60%; /* Adjust as needed */
+  border: 3px solid green;
+  background-color: white;
+  padding: 20px;
+  z-index: 2; /* Ensure it's on top of other components */
+  overflow: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .desc-input{
+  height: 50%;
+  width: 50%;
+  margin: 5px;
+} */
+
+.desc-input {
+  width: 90%; 
+  min-height: 80px; 
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
 }
 
 #task-list-container {
@@ -85,8 +140,4 @@
   font-size: 10px;
   border: 1px solid black;
   /* cursor: 'pointer' */
-}
-
-.task-list-item :hover{
-    cursor:'pointer'
 }
