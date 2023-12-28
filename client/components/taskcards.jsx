@@ -1,11 +1,15 @@
-import React, {useState} from 'react';    
+import React, { useState } from 'react';
 
 const TaskCard = (props) => {
-  return (
-   <div id='task-card' className="draggable">
-    {props.mockdb}
-   </div>
-  )
-}
+  // taskList contains a name property which will allow it to render for now.
+  // without name prop, will get errro and task wont render
+  const { name } = props.taskList;
 
-export default TaskCard
+  return (
+    <div id='task-card' className='draggable'>
+      {name}
+    </div>
+  );
+};
+
+export default TaskCard;
