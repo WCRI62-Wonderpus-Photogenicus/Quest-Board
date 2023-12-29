@@ -154,3 +154,15 @@
   justify-content: space-between;
   border: solid 3px red;
 }
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

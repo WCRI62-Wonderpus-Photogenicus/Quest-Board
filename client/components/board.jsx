@@ -62,7 +62,7 @@ const Board = () => {
   let cards = [];
 
   // max length of the board so it doesnt overflow
-  const maxLengthOfTaskList = Math.min(taskList.length, 15);
+  const maxLengthOfTaskList = Math.min(taskList.length, 9);
 
   for (let i = 0; i < maxLengthOfTaskList; i++) {
     cards.push(<TaskCard key={i} taskList={taskList[i]} />);
