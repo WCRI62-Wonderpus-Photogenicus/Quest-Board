@@ -28,6 +28,11 @@ import * as types from '../constants/actionTypes';
 //   payload: taskId,
 // });
 
+export const toggleLoginActionCreator = (bool, projectsId, userId) => ({
+  type: types.TOGGLE_LOGIN,
+  payload: {bool: bool, projectsId: projectsId, userId: userId}
+})
+
 export const addNewTaskActionCreator = () => ({
   type: types.ADD_NEW_TASK,
 });

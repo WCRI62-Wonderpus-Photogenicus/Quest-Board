@@ -12,15 +12,26 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
+  loginStatus: false,
+  projectsId: null,
+  userId: null,
   taskList: [],
   newTaskName: '',
   taskModalBoolean: false,
   modalId: null,
-  desc: ''
+  desc: '',
 };
 
 const projectsReducer = (state = initialState, action) => {
   switch(action.type){
+    case types.TOGGLE_LOGIN:
+      
+    return {
+      ...state, 
+      loginStatus: action.payload.bool,
+      projectsId: action.payload.projectsId,
+      userId: action.payload.userId
+    }  
     case types.ADD_NEW_TASK:
       const newTaskName = state.newTaskName
       return {
@@ -70,9 +81,8 @@ const projectsReducer = (state = initialState, action) => {
         taskList: updatedTaskList
       }
     case types.DELETE_TASK:
-      console.log(state.taskList)
+
       const prunedTaskList = state.taskList.filter((el, i) => i !== action.payload)
-      console.log(prunedTaskList)
 
 
       return {
