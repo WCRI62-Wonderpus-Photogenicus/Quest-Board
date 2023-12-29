@@ -8,4 +8,6 @@ router.post('/register', userController.addProject, userController.register, (re
 
 router.post('/login', userController.login, (req, res) => {return res.status(200).json(res.locals)})
 
+router.post('/update', userController.getTasks, (req, res) => {return res.status(200).json(res.locals)})
+
 module.exports = router;

@@ -77,4 +77,25 @@ userController.login = async (req,res,next) => {
           });
     }
 }
+
+userController.getTasks = async (req,res,next) => {
+  const {projectsId} = req.body
+  console.log(req.body)
+  try {
+    const params = [projectsId] 
+    const projectQuery = `SELECT * FROM tasks WHERE projects_id = $1` 
+    const result = await db.query(projectQuery, params)
+    console.log(result.rows)
+    res.locals.taskList =  result.rows
+    return next()
+  } catch (err) {
+    return next({
+      log: `userController.getProjects: ERROR: ${err}`,
+      message: { err: 'Error occured in userController.getProjects.' },
+      status: 500,
+    });
+  }
+}
+
+
 module.exports = userController

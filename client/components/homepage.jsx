@@ -3,8 +3,41 @@
  import Navbar from './navbar.jsx';
 import Progressbar from './progress-bar.jsx';
 import TaskListContainer from './TaskListContainer.jsx';
+import {useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { updateTaskListActionCreator } from "../actions/actions.js";
+
 
  const Homepage = () => {
+  const loginStatus = useSelector(state=> state.loginStatus)
+  const projectsId = useSelector(state => state.projects.projectsId)
+  const dispatch = useDispatch()
+
+
+const getProjects = async () => {
+  try{
+    const requestOptions = {
+      method: "POST",
+      headers:  { "Content-Type": "application/json" },
+      body: JSON.stringify({projectsId})
+    };
+    console.log('getting task list associated with projectsId: ', projectsId)
+    const response = await fetch("/update", requestOptions)
+    const data = await response.json();
+    // console.log('this is our data' , data)
+    
+    if (!response.ok) throw new Error(data.message || 'Error from server');
+
+    dispatch(updateTaskListActionCreator(data.taskList))
+  } catch (error) {
+    console.log("error accessing database")
+  }
+}
+  useEffect(()=>{
+    console.log('getting tasks')
+    getProjects()
+  })
+
    return (
     <div id='homepage-container'>
     <Navbar />
@@ -13,6 +46,7 @@ import TaskListContainer from './TaskListContainer.jsx';
     {/* <Progressbar />   */}
     <TaskListContainer />
     <Board />
+    {/* <button onClick={() => getProjects()}>TASKS</button> */}
     </div>
    )
  }

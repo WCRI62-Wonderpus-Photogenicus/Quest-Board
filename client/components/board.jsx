@@ -54,6 +54,13 @@ const Board = () => {
     target.setAttribute('data-y', y);
   }
 
+
+
+
+
+
+
+  
   //selecting task from state
   const taskList = useSelector((state) => state.projects.taskList);
   console.log('this is the current task list', taskList);

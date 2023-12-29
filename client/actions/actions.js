@@ -56,3 +56,8 @@ export const deleteTaskActionCreator = (id) => ({
   type: types.DELETE_TASK,
   payload: id
 });
+
+export const updateTaskListActionCreator = (array) => ({
+  type: types.UPDATE_TASK_LIST,
+  payload: array
+});
