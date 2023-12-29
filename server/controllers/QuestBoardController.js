@@ -6,7 +6,7 @@ questBoardController.addUser = async (req, res, next) => {
   const { username, password, projectid } = req.body;
   try {
     const params = [username, password, projectid];
-    const text = `INSERT INTO accounts (username, password) VALUES ($1,$2, $3) RETURNING *`;
+    const text = `INSERT INTO accounts (username, password, project_id) VALUES ($1,$2, $3) RETURNING *`;
 
     const result = await db.query(text, params);
     res.locals.character = result.rows[0];
