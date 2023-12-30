@@ -34,20 +34,25 @@ export const addNewTaskActionCreator = () => ({
 
 export const addNewTaskNameActionCreator = (newTaskName) => ({
   type: types.ADD_NEW_TASK_NAME,
-  payload: newTaskName
+  payload: newTaskName,
 });
 
 export const toggleTaskModalActionCreator = (bool, id) => ({
   type: types.TOGGLE_TASK_MODAL,
-  payload: {bool: bool, id: id}
+  payload: { bool: bool, id: id },
 });
 
 export const editTaskDescActionCreator = (id, desc) => ({
   type: types.EDIT_TASK_DESC,
-  payload: {id: id, desc: desc}
+  payload: { id: id, desc: desc },
 });
 
 export const deleteTaskActionCreator = (id) => ({
   type: types.DELETE_TASK,
-  payload: id
+  payload: id,
+});
+
+export const verifyUserActionCreator = (bool) => ({
+  type: types.VERIFY_USER,
+  payload: bool,
 });

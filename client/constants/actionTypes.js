@@ -26,4 +26,4 @@ export const EDIT_TASK_DESC = 'EDIT_TASK_DESC';
 
 export const DELETE_TASK = 'DELETE_TASK';
 
-
+export const VERIFY_USER = 'VERIFY_USER';
