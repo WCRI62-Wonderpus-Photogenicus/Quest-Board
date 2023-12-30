@@ -24,7 +24,7 @@ const TaskContainer = (props) => {
   const [assignedUsers, setAssignedUsers] = useState(taskList[props.id].assignedUsers)
  
  
-  //This use effect is keeping our task modal subscribed to the id associated with the tasklist item.
+  //This use effect is keeping our task modal subscrto the id associated with the tasklist item.
   //this allows us to click on other TaskListItems in the TaskListContainer to switch between them without closing the current modal
   useEffect(() => {
     setDescText(taskList[props.id].desc);
@@ -116,15 +116,15 @@ const TaskContainer = (props) => {
 
   const renderTaskModal = () => {
     return ( 
-      <div>
+      <div className="task-modal">
       <div className='modal-header'>
        <button onClick={()=> dbDeleteTask(projectsId, taskList[props.id].tasks_id)}>Delete</button>
        <button onClick={() => dispatch(toggleTaskModalActionCreator(false))}>X</button>
        <button onClick={() => setEdit(true)}>Edit</button>
      </div> 
      <h1>{name}</h1>
-     <p>{desc}</p>
-     <p>Assigned users: {assignedUsers.join(', ')}</p>
+     <pre className="desc-input">{desc}</pre>
+     <p>Assigned users: {(assignedUsers && assignedUsers.length > 0) ? assignedUsers.join(', ') : 'No one yet!'}</p>
      <button onClick={() => assignSelfToTask(taskList[props.id].tasks_id)}>Put me in, Coach!</button>
    </div>
     )
@@ -133,12 +133,12 @@ const TaskContainer = (props) => {
 
   const renderEditTask = () => {  
     return (
-    <div>
+    <div className="task-modal">
       <button onClick={() => dispatch(toggleTaskModalActionCreator(false))}>X</button>
       <button onClick={() => setEdit(false)}>CANCEL</button>
       
       <input value={name}  onChange={(e) => setTaskName(e.target.value)}></input>
-      <input value={desc}  onChange={(e) => setDescText(e.target.value)}></input>
+      <textarea className="desc-input" value={desc}  onChange={(e) => setDescText(e.target.value)}></textarea>
 
       <button onClick={() => taskList[props.id].tasks_id ? dbUpdatedTask(desc, name) : dbCreateTask(projectsId, desc, name)}>SAVE</button>
     </div>
@@ -147,7 +147,7 @@ const TaskContainer = (props) => {
 
 
   return (
-    <div className="task-modal">
+    <div>
       {(edit) ? renderEditTask() : renderTaskModal()}
     </div>
   );

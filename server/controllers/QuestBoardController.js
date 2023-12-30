@@ -23,6 +23,8 @@ questBoardController.getTasks = async (req,res,next) => {
       WHERE 
           tasks.projects_id = $1
       GROUP BY 
+          tasks.tasks_id
+      ORDER BY 
           tasks.tasks_id;
   `;
       const result = await db.query(projectQuery, params)
