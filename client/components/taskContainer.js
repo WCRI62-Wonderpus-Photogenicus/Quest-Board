@@ -15,11 +15,13 @@ const TaskContainer = (props) => {
   const dispatch = useDispatch();
   const taskList = useSelector((state) => {return state.projects.taskList});
   const projectsId = useSelector((state) => state.projects.projectsId)
+  const userId = useSelector((state) => state.projects.userId)
   const newTaskName = useSelector((state)=> state.projects.newTaskName)
   const taskEditBoolean = useSelector((state) => state.projects.taskEditBoolean);
   const [edit, setEdit] = useState(taskEditBoolean);
   const [name, setTaskName] = useState(taskList[props.id].name)
-  const [desc, setDescText] = useState(taskList[props.id].desc )
+  const [desc, setDescText] = useState(taskList[props.id].desc)
+  const [assignedUsers, setAssignedUsers] = useState(taskList[props.id].assignedUsers)
  
  
   //This use effect is keeping our task modal subscribed to the id associated with the tasklist item.
@@ -27,7 +29,9 @@ const TaskContainer = (props) => {
   useEffect(() => {
     setDescText(taskList[props.id].desc);
     setTaskName(taskList[props.id].name);
-  }, [props.id]);
+    setAssignedUsers(taskList[props.id].assignedUsers);
+ 
+  }, [props.id, taskList]);
   
   const dbCreateTask = async (projectsId, desc, name) => {
     try {
@@ -91,6 +95,24 @@ const TaskContainer = (props) => {
     }
   };
 
+  const assignSelfToTask = async (tasksId) => {
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers:  { "Content-Type": "application/json" },
+        body: JSON.stringify({projectsId: projectsId, tasksId: tasksId, userId: userId})
+      };
+      const response = await fetch('/assign', requestOptions)
+      const data = await response.json();
+  
+      if (!response.ok) throw new Error(data.message || 'Error from server');
+
+      dispatch(updateTaskListActionCreator(data.taskList));
+    } catch (error) {
+      console.log('error accessing database')
+    }
+  };
+
 
   const renderTaskModal = () => {
     return ( 
@@ -102,6 +124,8 @@ const TaskContainer = (props) => {
      </div> 
      <h1>{name}</h1>
      <p>{desc}</p>
+     <p>Assigned users: {assignedUsers.join(', ')}</p>
+     <button onClick={() => assignSelfToTask(taskList[props.id].tasks_id)}>Put me in, Coach!</button>
    </div>
     )
   };
