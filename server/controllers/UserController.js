@@ -16,8 +16,7 @@ userController.addProject = async (req, res, next) => {
         // Use a SELECT query to check if the project exists
         const projectQuery = `SELECT * FROM projects WHERE projects_id = $1`;
         const result = await db.query(projectQuery, params);
-        // console.log(result.rows[0])
-  
+   
         // Check if a project with the given ID exists
         if (result.rows.length === 0) {
             return res.status(404).send({ error: 'Project not found.' });
@@ -39,6 +38,8 @@ userController.register = async (req, res, next) => {
   console.log(req.body)
   try {
     const params = (req.body.projectsId) ? [username, password, projectsId] : [username, password];
+
+    // creates a new account. If there is a projectsId, logging in will return the project associated with that id, else it will not.
     const userQuery = (req.body.projectsId) ? `INSERT INTO accounts (username, password, projects_id) VALUES ($1, $2, $3) RETURNING *` : `INSERT INTO accounts (username, password) VALUES ($1, $2) RETURNING *`;
     
     const result = await db.query(userQuery, params);
@@ -76,25 +77,6 @@ userController.login = async (req,res,next) => {
             status: 500,
           });
     }
-}
-
-userController.getTasks = async (req,res,next) => {
-  const {projectsId} = req.body
-  console.log(req.body)
-  try {
-    const params = [projectsId] 
-    const projectQuery = `SELECT * FROM tasks WHERE projects_id = $1` 
-    const result = await db.query(projectQuery, params)
-    console.log(result.rows)
-    res.locals.taskList =  result.rows
-    return next()
-  } catch (err) {
-    return next({
-      log: `userController.getProjects: ERROR: ${err}`,
-      message: { err: 'Error occured in userController.getProjects.' },
-      status: 500,
-    });
-  }
 }
 
 

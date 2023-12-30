@@ -37,27 +37,13 @@ export const addNewTaskActionCreator = () => ({
   type: types.ADD_NEW_TASK,
 });
 
-export const addNewTaskNameActionCreator = (newTaskName) => ({
-  type: types.ADD_NEW_TASK_NAME,
-  payload: newTaskName
-});
-
 export const toggleTaskModalActionCreator = (bool, id) => ({
   type: types.TOGGLE_TASK_MODAL,
   payload: {bool: bool, id: id}
-});
-
-export const editTaskDescActionCreator = (id, desc) => ({
-  type: types.EDIT_TASK_DESC,
-  payload: {id: id, desc: desc}
-});
-
-export const deleteTaskActionCreator = (id) => ({
-  type: types.DELETE_TASK,
-  payload: id
 });
 
 export const updateTaskListActionCreator = (array) => ({
   type: types.UPDATE_TASK_LIST,
   payload: array
 });
+
