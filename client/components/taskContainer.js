@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  toggleTaskModalActionCreator
-} from '../actions/actions';
+import { toggleTaskModalActionCreator} from '../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { editTaskDescActionCreator, deleteTaskActionCreator } from '../actions/actions';
 
