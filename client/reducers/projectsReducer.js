@@ -12,15 +12,26 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
+  loginStatus: false,
+  projectsId: null,
+  userId: null,
   taskList: [],
   newTaskName: '',
   taskModalBoolean: false,
   modalId: null,
-  desc: ''
+  desc: '',
 };
 
 const projectsReducer = (state = initialState, action) => {
   switch(action.type){
+    case types.TOGGLE_LOGIN:
+    console.log('payload in Toggle_Login Reducer: ', action.payload)
+    return {
+      ...state, 
+      loginStatus: action.payload.bool,
+      projectsId: action.payload.projectsId,
+      userId: action.payload.userId
+    }  
     case types.ADD_NEW_TASK:
       const newTaskName = state.newTaskName
       return {
@@ -70,52 +81,26 @@ const projectsReducer = (state = initialState, action) => {
         taskList: updatedTaskList
       }
     case types.DELETE_TASK:
-      console.log(state.taskList)
+
       const prunedTaskList = state.taskList.filter((el, i) => i !== action.payload)
-      console.log(prunedTaskList)
 
 
       return {
         ...state, 
         taskList: prunedTaskList,
         taskModalBoolean: false
-      }          
-    default: 
+      }      
+    
+    case types.UPDATE_TASK_LIST: 
+      console.log("IN UPDATE TASK REDUCER!!  ", action.payload)
+
+      return {
+        ...state, 
+        taskList: action.payload,
+      } 
+      default: 
       return state;
   }
-}
-  //   let marketList;
-  //   let lastMarketId = state.lastMarketId;
-  //   let totalMarkets = state.totalMarkets;
-  //   let totalCards = state.totalCards;
-  // switch (action.type) {
-  //   case types.ADD_MARKET: {
-  //     // increment lastMarketId and totalMarkets counters
-  //     totalMarkets++;
-  //     totalCards++;
-  //     // create the new market object from provided data
-  //     const newMarket = {
-  //       // what goes in here?
-  //       id: lastMarketId++,
-  //       location: state.newLocation,
-  //       cards: 1,
-  //     };
-  //     // push the new market onto a copy of the market list
-  //     marketList = state.marketList.slice();
-  //     marketList.push(newMarket);
-  //     // return updated state
-  //     return {
-  //       ...state,
-  //       marketList,
-  //       lastMarketId,
-  //       totalMarkets,
-  //       totalCards,
-  //       newLocation: '',
-  //     };
-  //   }
-  //   default: {
-  //     return state;
-  //   }
-  // }
+};
 
 export default projectsReducer;

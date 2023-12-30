@@ -28,6 +28,11 @@ import * as types from '../constants/actionTypes';
 //   payload: taskId,
 // });
 
+export const toggleLoginActionCreator = (bool, projectsId = null, userId = null) => ({
+  type: types.TOGGLE_LOGIN,
+  payload: {bool: bool, projectsId: projectsId, userId: userId}
+})
+
 export const addNewTaskActionCreator = () => ({
   type: types.ADD_NEW_TASK,
 });
@@ -50,4 +55,9 @@ export const editTaskDescActionCreator = (id, desc) => ({
 export const deleteTaskActionCreator = (id) => ({
   type: types.DELETE_TASK,
   payload: id
+});
+
+export const updateTaskListActionCreator = (array) => ({
+  type: types.UPDATE_TASK_LIST,
+  payload: array
 });
