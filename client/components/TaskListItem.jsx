@@ -8,7 +8,6 @@ const TaskListItem = (props) => {
   return (
     <div className="task-list-item" onClick={() => { dispatch(toggleTaskModalActionCreator(true, props.id))}}>
       <p>{props.id + 1}. {props.name}</p>
-      {/* <button onClick={() => { dispatch(toggleTaskModalActionCreator(true, props.id))}}>test</button> */}
     </div>
   )
 }

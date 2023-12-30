@@ -19,43 +19,6 @@ const LoginPage = () => {
   const [projectsId, setProjectId] = useInput("")
   const dispatch = useDispatch();
 
-  // const handleLogin = async () => {
-  //   try {
-  //     const requestOptions = {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ username, password, projectsId }),
-  //     };
-  //     const response = await fetch("/login", requestOptions);
-  //     const data = await response.json();
-
-  //     if (!response.ok) throw new Error(data.message || 'Error from server')
-
-  //     console.log(data);
-  //     dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
-  //   } catch (error) {
-  //     console.log("error accessing database");
-  //   }
-  // };
-  
-  // const handleRegister = async () => {
-  //   try {
-  //       const requestOptions = {
-  //           method: "POST",
-  //           headers: {"Content-Type": "application/json"},
-  //           body: JSON.stringify({username, password, projectsId})
-  //       };
-  //       console.log(requestOptions)
-  //       const response = await fetch("/register", requestOptions)
-  //       const data = await response.json()
-  //       console.log(data);
-  //       dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
-  //   } catch (error) {
-  //       console.log("error accessing database");
-  //   }
-  // }
-
-  // **********************************************************************************************************************************
   // path is passed in as arg (either "/login" or "/register") when it is called by onClick, 
   // Also we now pass projectsID on body for both login and register despite only needing it for register
   // We can do this because, even though the login middleware doesn't use it, the login middleware doesn't care that its there either.
@@ -79,9 +42,6 @@ const LoginPage = () => {
       console.log("error accessing database");
     }
   }
-
-
-
 
 
   const renderLoginForm = () => {
