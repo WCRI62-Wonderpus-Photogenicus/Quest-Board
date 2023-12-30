@@ -24,8 +24,6 @@ const getProjects = async () => {
     console.log('getting task list associated with projectsId: ', projectsId)
     const response = await fetch("/update", requestOptions)
     const data = await response.json();
-    // console.log('this is our data' , data)
-    
     if (!response.ok) throw new Error(data.message || 'Error from server');
 
     dispatch(updateTaskListActionCreator(data.taskList))
@@ -46,7 +44,6 @@ const getProjects = async () => {
     {/* <Progressbar />   */}
     <TaskListContainer />
     <Board />
-    {/* <button onClick={() => getProjects()}>TASKS</button> */}
     </div>
    )
  }
