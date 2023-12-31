@@ -15,11 +15,13 @@ const projectsReducer = (state = initialState, action) => {
 
     //login functionality
     case types.TOGGLE_LOGIN:
+      
     return {
       ...state, 
       loginStatus: action.payload.bool,       //checks login status if true or false (true = renders homepage, false = renders login page)
       userId: action.payload.userId,          //checks for userId
-      projectsId: action.payload.projectsId   //renders the projects associated with userId   
+      projectsId: action.payload.projectsId,   //renders the projects associated with userId 
+      taskModalBoolean: false                  //ensures that the modal doesn't stay open when logging out.
     }  
     
     //adds a *mostly* empty object to the end of our TaskList Array in order to edit it and save a new task to our database

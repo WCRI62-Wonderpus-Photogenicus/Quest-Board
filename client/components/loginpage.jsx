@@ -28,16 +28,18 @@ const LoginPage = () => {
     try{
       const requestOptions = {
         method: "POST",
-        headers:  { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password, projectsId })
+        headers:  { "Content-Type": "application/json"},
+        body: JSON.stringify({ username, password, projectsId }),
+        credentials: 'include'
       };
       const response = await fetch(path, requestOptions)
       const data = await response.json();
-
+      
       if (!response.ok) throw new Error(data.message || 'Error from server');
-
-      console.log(data);
+      const sessionId = data.sessionId
+  
       dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
+  
     } catch (error) {
       console.log("error accessing database");
     }

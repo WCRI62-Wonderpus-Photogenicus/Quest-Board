@@ -18,8 +18,8 @@ app.use(session({
       tableName: 'sessions'
   }), 
   secret: 'secret',
-  cookie: { maxAge: 1000},
-  saveUninitialized: true, //this will create a new session id 
+  cookie: { maxAge: 36000},
+  resave: false
 }))
 
 // set up routing to routes here

@@ -4,7 +4,6 @@ const questBoardController = {}
 
 questBoardController.getTasks = async (req,res,next) => {
     const {projectsId} = req.body
-    console.log("in getTasks:", req.body.projectsId)
     try {
       const params = [projectsId] 
       const projectQuery = `SELECT * FROM tasks WHERE projects_id = $1` 
@@ -60,6 +59,7 @@ questBoardController.getTasks = async (req,res,next) => {
   questBoardController.updateTask = async (req,res,next) => {
     const { tasksId, desc, name } = req.body;
     console.log("body", req.body)
+    
     try {
       const params = [desc, name, tasksId];
       console.log('params', params)
