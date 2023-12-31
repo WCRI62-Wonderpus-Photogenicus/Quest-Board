@@ -9,6 +9,7 @@ const useInput = ({ start }) => {
   const onChange = (e) => {
     setValue(e.target.value);
   };
+
   return [value, onChange];
 };
 
@@ -30,26 +31,28 @@ const LoginPage = () => {
         method: "POST",
         headers:  { "Content-Type": "application/json"},
         body: JSON.stringify({ username, password, projectsId }),
-        credentials: 'include'
       };
       const response = await fetch(path, requestOptions)
       const data = await response.json();
       
       if (!response.ok) throw new Error(data.message || 'Error from server');
-    
-      dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
+      
+      if (path === '/login') {
+        dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
+      }
   
     } catch (error) {
       console.log("error accessing database");
     }
   }
 
+
   useEffect(()=> {
     const checkSession = async () => {
         try {
-          const path = signUp ? '/register' : '/login'
-            const sessionResponse = await fetch(path, {credentials: "include"});
+            const sessionResponse = await fetch('/login', {credentials: "include"});// {credentials: "include"} is needed to receive and store session cookie id in browser
             const sessionData = await sessionResponse.json();
+            //res.locals is being served which contains the data the session's user property (check userController.checkSession in api.js)
             dispatch(toggleLoginActionCreator(sessionData.loginStatus, sessionData.projectsId, sessionData.userId))
         } catch (err) {
             console.log('error during checkSessionStatus', err);
@@ -57,6 +60,7 @@ const LoginPage = () => {
     }
     checkSession();
    }, []);
+
 
   const renderLoginForm = () => {
     return (
@@ -74,8 +78,11 @@ const LoginPage = () => {
     );
   };
 
-  const handleRegister = ()=>{
+
+  const handleRegister = () =>{
+    //passing in /register route to handleAuth , creating and saving acc to database
     handleAuth("/register")
+    //switches back to login form. need to log in to create session
     setSignUp(false)
   }
   

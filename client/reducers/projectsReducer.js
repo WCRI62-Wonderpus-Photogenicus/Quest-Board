@@ -18,7 +18,7 @@ const projectsReducer = (state = initialState, action) => {
       
     return {
       ...state, 
-      loginStatus: action.payload.bool,       //checks login status if true or false (true = renders homepage, false = renders login page)
+      loginStatus: action.payload.bool,       //checks login status if true or false (true = renders homepage, false = renders login page). This is done in App.jsx
       userId: action.payload.userId,          //checks for userId
       projectsId: action.payload.projectsId,   //renders the projects associated with userId 
       taskModalBoolean: false                  //ensures that the modal doesn't stay open when logging out.
