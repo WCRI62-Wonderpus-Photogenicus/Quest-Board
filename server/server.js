@@ -8,9 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // set up routing to routes here
-
 app.use('/', apiRouter);
 
+
+// global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',

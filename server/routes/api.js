@@ -4,6 +4,11 @@ const questBoardController = require('../controllers/QuestBoardController');
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+  return res.status(200).json()
+})
+
+
 router.get(
   '/',
   /* questBoardController.addProject, */ questBoardController.addUser,
