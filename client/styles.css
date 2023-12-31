@@ -122,10 +122,13 @@
 
 .desc-input {
   width: 90%;
-  min-height: 80px;
+  min-height: 50%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+  white-space: pre-wrap; /* Allows text to wrap */
+  word-wrap: break-word; /* Breaks long words if necessary */
+  overflow-wrap: break-word; /* Ensures overflow text is wrapped */
 }
 
 #task-list-container {

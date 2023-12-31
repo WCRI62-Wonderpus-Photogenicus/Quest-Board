@@ -15,19 +15,23 @@ const TaskContainer = (props) => {
   const dispatch = useDispatch();
   const taskList = useSelector((state) => {return state.projects.taskList});
   const projectsId = useSelector((state) => state.projects.projectsId)
+  const userId = useSelector((state) => state.projects.userId)
   const newTaskName = useSelector((state)=> state.projects.newTaskName)
   const taskEditBoolean = useSelector((state) => state.projects.taskEditBoolean);
   const [edit, setEdit] = useState(taskEditBoolean);
-  const [create, setCreate] = useState(false);
-  const [name, setTaskName] = useState(taskList[props.id].name || '')
-  const [desc, setDescText] = useState(taskList[props.id].desc || '')
+  const [name, setTaskName] = useState(taskList[props.id].name)
+  const [desc, setDescText] = useState(taskList[props.id].desc)
+  const [assignedUsers, setAssignedUsers] = useState(taskList[props.id].assignedUsers)
  
  
-  //This use effect is keeping our task modal subscribed to the id associated with the tasklist item.
-  //this allows us 
+  //This use effect is keeping our task modal subscrto the id associated with the tasklist item.
+  //this allows us to click on other TaskListItems in the TaskListContainer to switch between them without closing the current modal
   useEffect(() => {
     setDescText(taskList[props.id].desc);
-  }, [props.id]);
+    setTaskName(taskList[props.id].name);
+    setAssignedUsers(taskList[props.id].assignedUsers);
+ 
+  }, [props.id, taskList]);
   
   const dbCreateTask = async (projectsId, desc, name) => {
     try {
@@ -89,70 +93,65 @@ const TaskContainer = (props) => {
     } catch (error) {
         console.log('error accessing database')
     }
-  }
+  };
+
+  const assignSelfToTask = async (tasksId) => {
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers:  { "Content-Type": "application/json" },
+        body: JSON.stringify({projectsId: projectsId, tasksId: tasksId, userId: userId})
+      };
+      const response = await fetch('/assign', requestOptions)
+      const data = await response.json();
+  
+      if (!response.ok) throw new Error(data.message || 'Error from server');
+
+      dispatch(updateTaskListActionCreator(data.taskList));
+    } catch (error) {
+      console.log('error accessing database')
+    }
+  };
 
 
   const renderTaskModal = () => {
     return ( 
-      <div>
+      <div className="task-modal">
       <div className='modal-header'>
        <button onClick={()=> dbDeleteTask(projectsId, taskList[props.id].tasks_id)}>Delete</button>
        <button onClick={() => dispatch(toggleTaskModalActionCreator(false))}>X</button>
        <button onClick={() => setEdit(true)}>Edit</button>
      </div> 
      <h1>{name}</h1>
-     <p>{desc}</p>
+     <pre className="desc-input">{desc}</pre>
+     <p>Assigned users: {(assignedUsers && assignedUsers.length > 0) ? assignedUsers.join(', ') : 'No one yet!'}</p>
+     <button onClick={() => assignSelfToTask(taskList[props.id].tasks_id)}>Put me in, Coach!</button>
    </div>
     )
-  }
+  };
 
 
   const renderEditTask = () => {  
     return (
-    <div>
+    <div className="task-modal">
       <button onClick={() => dispatch(toggleTaskModalActionCreator(false))}>X</button>
       <button onClick={() => setEdit(false)}>CANCEL</button>
       
-      <input /*value={name}*/ placeholder={name} onChange={(e) => setTaskName(e.target.value)}></input>
-      <input /*value={desc}*/ placeholder={desc} onChange={(e) => setDescText(e.target.value)}></input>
+      <input value={name}  onChange={(e) => setTaskName(e.target.value)}></input>
+      <textarea className="desc-input" value={desc}  onChange={(e) => setDescText(e.target.value)}></textarea>
 
       <button onClick={() => taskList[props.id].tasks_id ? dbUpdatedTask(desc, name) : dbCreateTask(projectsId, desc, name)}>SAVE</button>
     </div>
     )
-  }
-
-
-  // const renderCreateTask = () => {
-  //   return(
-  //   <div>
-
-  //   </div>
-  //   )
-  // }
+  };
 
 
   return (
-    <div className="task-modal">
+    <div>
       {(edit) ? renderEditTask() : renderTaskModal()}
     </div>
   );
 
-
-
-  // return (
-  //   <div className='task-modal'>
-
-  //     <input type='text' onChange={(e) => setTaskName(e.target.value)} placeholder={name}></input>   
-
-  //     <div className='modal-header'>
-  //       <button onClick={()=> deleteTask(projectsId, taskList[props.id].tasks_id)}>Delete</button>
-  //       <button onClick={() => dispatch(toggleTaskModalActionCreator(false))}>CLOSE</button>
-  //     </div> 
-
-  //     <input className='desc-input' value={desc} onChange={(e) => setDescText(e.target.value)} placeholder={desc}></input>
-  //     <button onClick={()=> saveTaskToDB(projectsId, desc, name)}>SAVE</button>
-  //   </div>
-  // );
 };
 
 export default TaskContainer
@@ -178,26 +177,3 @@ export default TaskContainer
 
 
 
-
-      {/* <div className='task-description'>
-        Task Number: {id}, Task Information: {description}
-      </div>
-      <form className='additional-task-info'> */}
-        {/* <input type='text' onChange = {}>Enter Additional Info Here</input> */}
-        {/* In state, will have a tasklist of objects, 
-        within each object, when the submit is clicked, 
-        will update state at the individual 
-        taskList additional information key */}
-        {/* <button
-          type='submit'
-          onClick={() => dispatch(addTaskInfoActionCreator(id))}
-        >
-          Submit Task Changes
-        </button>
-      </form>
-      <button
-        className='delete-task'
-        onClick={() => dispatch(deletecardTaskActionCreator(id))}
-      >
-        Delete Task
-      </button> */}
