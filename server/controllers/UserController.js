@@ -75,9 +75,9 @@ userController.login = async (req,res,next) => {
         if (result) {
           const hashedPWCompare= await bcrypt.compare(password, result.rows[0].password)
           if (hashedPWCompare) {
+            req.session.authenticated = true
+            console.log(req.session)
             return next()
-          } else {
-            return next(res.send("invalid pw"))
           }
         } 
 
