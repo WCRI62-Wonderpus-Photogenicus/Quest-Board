@@ -19,7 +19,8 @@ app.use(session({
   }), 
   secret: 'secret',
   cookie: { maxAge: 36000},
-  resave: false
+  resave: false,
+  saveUninitialized: true
 }))
 
 // set up routing to routes here

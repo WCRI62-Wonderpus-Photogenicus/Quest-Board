@@ -5,11 +5,15 @@ const questBoardController = require('../controllers/QuestBoardController')
 
 const router = express.Router();
 
-router.get('/session', userController.checkSession, (req, res) => {res.status(200).json(res.locals)})
+router.get('/login', userController.checkSession, (req, res) => {res.status(200).json(res.locals)})
+
+router.get('/register', userController.checkSession, (req, res) => {res.status(200).json(res.locals)})
 
 router.post('/login', userController.login, (req, res) => {return res.status(200).json(res.locals)})
 
 router.post('/register', userController.addProject, userController.register, (req, res) => {return res.status(200).json(res.locals);});
+
+router.post('/logout', userController.logout, (req, res) => {return res.status(200).json(res.locals)});
 
 router.post('/update',  questBoardController.getTasks,  (req, res) => {return res.status(200).json(res.locals)})
 

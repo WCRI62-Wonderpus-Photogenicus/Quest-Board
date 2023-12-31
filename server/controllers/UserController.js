@@ -5,7 +5,7 @@ const userController = {};
 
 userController.checkSession = (req, res, next) => {
   console.log('IN CHECK SESSION CONTROLLER here is req.session: ', req.session.user.userId)
-  if (req.session.user.userId) {
+  if (req.session.user && req.session.user.userId) {
     res.locals = {userId: req.session.user.userId, projectsId: req.session.user.projectsId, loginStatus: true}
     return next();
   } else {
@@ -89,10 +89,8 @@ userController.login = async (req,res,next) => {
         if (result) {
           const hashedPWCompare= await bcrypt.compare(password, result.rows[0].password)
           if (hashedPWCompare) {
-            req.session.authenticated = true
-            
             req.session.user = {userId: result.rows[0].user_id, projectsId: result.rows[0].projects_id}
-            console.log(req.session)
+         
             res.locals = {userId: result.rows[0].user_id, projectsId: result.rows[0].projects_id}
 
             return next()
@@ -108,8 +106,10 @@ userController.login = async (req,res,next) => {
     }
 }
 
-// userController.authenticated = async (req, res, next) => {
-    // if (req.)
-// }
+userController.logout = (req,res,next) => {
+    req.session.destroy()
+    next()
+}
+
 
 module.exports = userController

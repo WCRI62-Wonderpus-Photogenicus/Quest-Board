@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { toggleLoginActionCreator } from "../actions/actions.js";
 
@@ -36,8 +36,7 @@ const LoginPage = () => {
       const data = await response.json();
       
       if (!response.ok) throw new Error(data.message || 'Error from server');
-      const sessionId = data.sessionId
-  
+    
       dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
   
     } catch (error) {
@@ -45,6 +44,19 @@ const LoginPage = () => {
     }
   }
 
+  useEffect(()=> {
+    const checkSession = async () => {
+        try {
+          const path = signUp ? '/register' : '/login'
+            const sessionResponse = await fetch(path, {credentials: "include"});
+            const sessionData = await sessionResponse.json();
+            dispatch(toggleLoginActionCreator(sessionData.loginStatus, sessionData.projectsId, sessionData.userId))
+        } catch (err) {
+            console.log('error during checkSessionStatus', err);
+        }
+    }
+    checkSession();
+   }, []);
 
   const renderLoginForm = () => {
     return (
@@ -62,6 +74,11 @@ const LoginPage = () => {
     );
   };
 
+  const handleRegister = ()=>{
+    handleAuth("/register")
+    setSignUp(false)
+  }
+  
   const renderSignUpForm = () => {
     if (signUp) {
       return (
@@ -73,7 +90,7 @@ const LoginPage = () => {
             placeholder="password"
           ></input>
           <input onChange={setProjectId} placeholder="project ID (optional)"></input>
-          <button onClick={() => handleAuth("/register")}>Create Account</button>
+          <button onClick={() => handleRegister()}>Create Account</button>
           <p>If already have an account</p>
           <button onClick={() => setSignUp(false)}>Login</button>
         </div>
