@@ -22,4 +22,6 @@ router.post('/deletetask', questBoardController.deleteTask, questBoardController
 
 router.post('/updatetask', questBoardController.updateTask, questBoardController.getTasks, (req, res) => {return res.status(200).json(res.locals)})
 
+router.post('/assign', questBoardController.assignUser, questBoardController.getTasks, (req, res) => {return res.status(200).json(res.locals)})
+
 module.exports = router;

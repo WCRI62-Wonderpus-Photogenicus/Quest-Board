@@ -6,7 +6,26 @@ questBoardController.getTasks = async (req,res,next) => {
     const {projectsId} = req.body
     try {
       const params = [projectsId] 
-      const projectQuery = `SELECT * FROM tasks WHERE projects_id = $1` 
+      
+      const projectQuery = `
+      SELECT 
+          tasks.tasks_id, 
+          tasks.name, 
+          tasks.desc, 
+          ARRAY_AGG(accounts.username) AS "assignedUsers"
+      FROM 
+          tasks
+      LEFT JOIN 
+          task_assignments ON tasks.tasks_id = task_assignments.task_id
+      LEFT JOIN 
+          accounts ON task_assignments.user_id = accounts.user_id
+      WHERE 
+          tasks.projects_id = $1
+      GROUP BY 
+          tasks.tasks_id
+      ORDER BY 
+          tasks.tasks_id;
+  `;
       const result = await db.query(projectQuery, params)
       console.log(result.rows)
       res.locals.taskList =  result.rows
@@ -71,6 +90,23 @@ questBoardController.getTasks = async (req,res,next) => {
       return next({
         log: `userController.updateTask: ERROR: ${err}`,
         message: { err: 'Error occured in userController.updateTask.' },
+        status: 500,
+      });
+    }
+  }
+
+  questBoardController.assignUser = async (req, res, next) => {
+    const {tasksId, userId} = req.body;
+    console.log("in assignUser middleware... tasksId: ", tasksId, "userId: ", userId  )
+    try {
+      const params = [tasksId, userId];
+      const projectQuery = 'INSERT INTO task_assignments (task_id, user_id) VALUES ($1, $2);'
+      const result = await db.query(projectQuery, params)
+      return next()
+    } catch (err) {
+      return next({
+        log: `userController.assignUser: ERROR: ${err}`,
+        message: { err: 'Error occured in userController.assignUser.' },
         status: 500,
       });
     }

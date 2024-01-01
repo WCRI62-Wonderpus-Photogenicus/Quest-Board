@@ -5,12 +5,15 @@ const userController = {};
 
 
 userController.addProject = async (req, res, next) => {
-
-  const projectsId  = req.body.projectsId;
+  console.log(req.body)  
+  let projectsId  = req.body.projectsId;
   
     // Ensure projects_id is provided and valid
     if (!projectsId) {
-        return next();
+        const params = [req.body.projectName]
+        const createProjectQuery = 'INSERT INTO projects (project_name) VALUES ($1) RETURNING *;'
+        const newProject = await db.query(createProjectQuery, params)
+        projectsId = newProject.rows[0].projects_id
     }
 
     try {
@@ -23,7 +26,7 @@ userController.addProject = async (req, res, next) => {
         if (result.rows.length === 0) {
             return res.status(404).send({ error: 'Project not found.' });
         }
-  
+        req.body.projectsId = projectsId
         return next();
     } catch (err) {
         return next({

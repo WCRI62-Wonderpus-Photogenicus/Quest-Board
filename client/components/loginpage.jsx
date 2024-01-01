@@ -4,20 +4,21 @@ import { useDispatch } from "react-redux";
 import { toggleLoginActionCreator } from "../actions/actions.js";
 
 //custom react hook that handles onChange events
-const useInput = ({ start }) => {
-  const [value, setValue] = useState(start);
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  return [value, onChange];
-};
+// const useInput = ({ start }) => {
+//   const [value, setValue] = useState(start);
+//   const onChange = (e) => {
+//     setValue(e.target.value);
+//   };
+//   return [value, onChange];
+// };
 
 const LoginPage = () => {
   const [signUp, setSignUp] = useState(false);
-  const [username, setUsername] = useInput("");
-  const [password, setPassword] = useInput("");
-  const [projectsId, setProjectId] = useInput("")
+  const [createProj, setCreateProj] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [regProjectId, setRegProjectId] = useState("")
+  const [projectName, setProjectName] = useState("")
   const dispatch = useDispatch();
 
   // path is passed in as arg (either "/login" or "/register") when it is called by onClick, 
@@ -26,11 +27,16 @@ const LoginPage = () => {
   // all and all still plenty readable imo...
   
   const handleAuth = async (path) => {
+    
+    if (signUp && !regProjectId && !projectName) {
+      setCreateProj(true)
+      return;
+    }
     try{
       const requestOptions = {
         method: "POST",
-        headers:  { "Content-Type": "application/json"},
-        body: JSON.stringify({ username, password, projectsId }),
+        headers:  { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, projectsId: regProjectId, projectName })
       };
       const response = await fetch(path, requestOptions)
       const data = await response.json();
@@ -66,9 +72,9 @@ const LoginPage = () => {
   const renderLoginForm = () => {
     return (
       <div className="login">
-        <input onChange={setUsername} placeholder="username"></input>
+        <input onChange={(e) => setUsername(e.target.value)} placeholder="username"></input>
         <input
-          onChange={setPassword}
+          onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="password"
         ></input>
@@ -91,14 +97,14 @@ const LoginPage = () => {
     if (signUp) {
       return (
         <div className="signup">
-          <input onChange={setUsername} placeholder="username"></input>
+          <input onChange={(e) => setUsername(e.target.value)} placeholder="username"></input>
           <input
-            onChange={setPassword}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="password"
           ></input>
-          <input onChange={setProjectId} placeholder="project ID (optional)"></input>
-          <button onClick={() => handleRegister()}>Create Account</button>
+          <input onChange={(e) => setRegProjectId(e.target.value)} placeholder="project ID (optional)"></input>
+          <button onClick={() => handleAuth("/register")}>Create Account</button>
           <p>If already have an account</p>
           <button onClick={() => setSignUp(false)}>Login</button>
         </div>
@@ -106,9 +112,27 @@ const LoginPage = () => {
     }
   };
 
+  const renderCreateProjForm = () => {
+      return (
+        <div className="create-project">
+          <input 
+                value={projectName}
+                onChange={(e) => setProjectName(e.target.value)}
+                placeholder="Project Name"
+                name="projectName" // Unique name attribute
+                id="projectName"   // Unique id attribute
+            ></input>
+          <button onClick={() => handleAuth("/register")}>Create Project</button>
+          <button onClick={() =>  setCreateProj(false)} >Go Back</button>
+        </div>
+      );
+  };
+
+  
+
   return (
     <div className="login">
-      {signUp ? renderSignUpForm() : renderLoginForm()}
+      {(signUp && createProj) ? renderCreateProjForm() : (signUp) ? renderSignUpForm() : renderLoginForm()}
     </div>
   );
 };
