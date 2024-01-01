@@ -13,7 +13,7 @@ const Navbar = () => {
       }
     } catch (error) {
       console.error('Error logging out:', error);
-      // Handle error as needed
+    
     }
   };
 

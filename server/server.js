@@ -24,7 +24,7 @@ app.use(session({
   }), 
   //^this is all being done under the hood of the session method^
   secret: 'thishelpsencodesthecookie',  //encodes the sessionid cookie. Can be any string.
-  cookie: { maxAge: 30000}, //sets cookie property
+  cookie: {maxAge: 30000}, //sets cookie property
   resave: false, // avoids sessions from being saved into db if session wasn't modified
   saveUninitialized: true // creates a new session on every login request IF its not in the db
 }))

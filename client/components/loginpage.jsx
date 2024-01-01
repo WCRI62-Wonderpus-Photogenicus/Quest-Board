@@ -52,6 +52,7 @@ const LoginPage = () => {
         try {
             const sessionResponse = await fetch('/login', {credentials: "include"});// {credentials: "include"} is needed to receive and store session cookie id in browser
             const sessionData = await sessionResponse.json();
+            console.log('sessionData:', sessionData)
             //res.locals is being served which contains the data the session's user property (check userController.checkSession in api.js)
             dispatch(toggleLoginActionCreator(sessionData.loginStatus, sessionData.projectsId, sessionData.userId))
         } catch (err) {

@@ -98,7 +98,7 @@ userController.login = async (req,res,next) => {
 }
 
 userController.checkSession = (req, res, next) => {
-  //we are checking for the user prop from the session (which is created during logging)
+  //we are checking for the user prop from the session (which is created during logging in)
   if (req.session.user) {
     //since this will be in a get request router, the response will need to send the values stored in the session's user property
     res.locals = {userId: req.session.user.userId, projectsId: req.session.user.projectsId, loginStatus: true}
