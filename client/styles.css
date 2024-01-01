@@ -1,5 +1,30 @@
+@font-face {
+  font-family: 'OldSchoolAdventures';
+  src: url('./assets/OldSchoolAdventures-42j9.ttf') format('truetype');
+}
+
 * {
   overflow: hidden;
+  font-family: 'OldSchoolAdventures', sans-serif;
+}
+
+
+/* zoren's animations */
+#bg {
+  transform: scale(1)
+}
+
+#bg.zoom {
+  transition: 0.5s all ease-in;
+  transform:scale(5)
+}
+
+body {
+  background-image: url('./assets/questboard_homepage.png');
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .draggable {
@@ -20,12 +45,12 @@
   height: 95vh;
   display: grid;
   grid-template-columns: 0.2fr 1fr;
-  grid-template-rows: 0.05fr 0.02fr 1fr;
+  grid-template-rows: 0.05fr 1fr 0.02fr;
   grid-gap: 5px;
   grid-template-areas:
     'title title'
-    'progress status'
-    'task-list board';
+    'task-list board'
+    'status status';
 }
 
 #title {
@@ -50,6 +75,12 @@
   justify-content: space-between;
 }
 
+#progress-bar-container {
+  grid-area: status;
+  height: 20px;
+  border: 2px solid black;
+}
+
 #status-bar {
   grid-area: status;
   height: 20px;
@@ -62,6 +93,7 @@
   border: 2px solid black;
 }
 #board-container {
+  margin: .7% 8.5% 1.5% 11.2%;
   position: relative;
   display: flex;
   grid-area: board;
@@ -133,18 +165,31 @@
 
 #task-list-container {
   display: flex;
+  box-shadow: 4px 4px 4px;
   flex-direction: column;
-  border: 1px solid red;
+  border: 3px outset silver; /* Solid silver border */
+  border-radius: 1%;
+}
+
+#task-list-inner {
+  flex-grow: 1;
+  background: linear-gradient(rgba(102, 97, 247, 0.7), rgba(17, 9, 242, 0.7)); /* Gradient with transparency */
+  background-clip: padding-box; /* Ensures the background only fills the padding area, not the border */
 }
 
 .task-list-item {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  height: 30px;
+  height: 40px;
   margin: 5px;
-  font-size: 10px;
+  font-size: .50rem;
+  font-weight: bold;
+  color: white;
   border: 1px solid black;
+  font-family: 'OldSchoolAdventures', sans-serif;
+  font-size: 12rm;
+  /* opacity: 1; */
   /* cursor: 'pointer' */
 }
 

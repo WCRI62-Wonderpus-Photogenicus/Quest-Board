@@ -39,9 +39,9 @@ const getProjects = async () => {
    return (
     <div id='homepage-container'>
     <Navbar />
-      <div id='progress-container'>Progress:</div>
-      <div id='status-bar'>status bar</div>
-    {/* <Progressbar />   */}
+      {/* <div id='progress-container'>Progress:</div> */}
+      {/* <div id='status-bar'>status bar</div> */}
+    <Progressbar />  
     <TaskListContainer />
     <Board />
     </div>

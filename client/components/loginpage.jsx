@@ -95,7 +95,7 @@ const LoginPage = () => {
                 placeholder="Project Name"
                 name="projectName" // Unique name attribute
                 id="projectName"   // Unique id attribute
-            ></input>
+            ></input>git 
           <button onClick={() => handleAuth("/register")}>Create Project</button>
           <button onClick={() =>  setCreateProj(false)} >Go Back</button>
         </div>
