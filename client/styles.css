@@ -8,23 +8,9 @@
   font-family: 'OldSchoolAdventures', sans-serif;
 }
 
-
-/* zoren's animations */
-#bg {
-  transform: scale(1)
-}
-
-#bg.zoom {
-  transition: 0.5s all ease-in;
-  transform:scale(5)
-}
-
 body {
-  background-image: url('./assets/questboard_homepage.png');
-  
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .draggable {
@@ -42,10 +28,10 @@ body {
 
 #homepage-container {
   overflow-y: hidden;
-  height: 95vh;
+  height: 100vh;
   display: grid;
   grid-template-columns: 0.2fr 1fr;
-  grid-template-rows: 0.05fr 1fr 0.02fr;
+  grid-template-rows: 0.05fr 0.9fr 0.05fr;
   grid-gap: 5px;
   grid-template-areas:
     'title title'
@@ -204,13 +190,17 @@ body {
 }
 
 .login {
+  height: 100vh;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
 .signUp {
+  height: 100vh;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 }

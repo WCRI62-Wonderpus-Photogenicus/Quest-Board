@@ -28,10 +28,10 @@ const LoginPage = () => {
   
   const handleAuth = async (path) => {
     
-    if (signUp && !regProjectId && !projectName) {
-      setCreateProj(true)
-      return;
-    }
+    // if (signUp && !regProjectId && !projectName) {
+    //   setCreateProj(true)
+    //   return;
+    // }
     try{
       const requestOptions = {
         method: "POST",
@@ -96,7 +96,7 @@ const LoginPage = () => {
   const renderSignUpForm = () => {
     if (signUp) {
       return (
-        <div className="signup">
+        <div className="signUp">
           <input onChange={(e) => setUsername(e.target.value)} placeholder="username"></input>
           <input
             onChange={(e) => setPassword(e.target.value)}
@@ -104,7 +104,7 @@ const LoginPage = () => {
             placeholder="password"
           ></input>
           <input onChange={(e) => setRegProjectId(e.target.value)} placeholder="project ID (optional)"></input>
-          <button onClick={() => handleAuth("/register")}>Create Account</button>
+          <button onClick={() => handleRegister()}>Create Account</button>
           <p>If already have an account</p>
           <button onClick={() => setSignUp(false)}>Login</button>
         </div>
@@ -112,27 +112,27 @@ const LoginPage = () => {
     }
   };
 
-  const renderCreateProjForm = () => {
-      return (
-        <div className="create-project">
-          <input 
-                value={projectName}
-                onChange={(e) => setProjectName(e.target.value)}
-                placeholder="Project Name"
-                name="projectName" // Unique name attribute
-                id="projectName"   // Unique id attribute
-            ></input>git 
-          <button onClick={() => handleAuth("/register")}>Create Project</button>
-          <button onClick={() =>  setCreateProj(false)} >Go Back</button>
-        </div>
-      );
-  };
+  // const renderCreateProjForm = () => {
+  //     return (
+  //       <div className="create-project">
+  //         <input 
+  //               value={projectName}
+  //               onChange={(e) => setProjectName(e.target.value)}
+  //               placeholder="Project Name"
+  //               name="projectName" // Unique name attribute
+  //               id="projectName"   // Unique id attribute
+  //           ></input>git 
+  //         <button onClick={() => handleAuth("/register")}>Create Project</button>
+  //         <button onClick={() =>  setCreateProj(false)} >Go Back</button>
+  //       </div>
+  //     );
+  // };
 
   
 
   return (
     <div className="login">
-      {(signUp && createProj) ? renderCreateProjForm() : (signUp) ? renderSignUpForm() : renderLoginForm()}
+      {signUp ? renderSignUpForm() : renderLoginForm()}
     </div>
   );
 };
