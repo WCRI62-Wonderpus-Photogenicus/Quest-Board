@@ -45,8 +45,6 @@ const LoginPage = () => {
     }
   }
 
-
-
   useEffect(()=> {
     const checkSession = async () => {
         try {
@@ -81,12 +79,6 @@ const LoginPage = () => {
     );
   };
 
-  const handleRegister = () =>{
-    //passing in /register route to handleAuth , creating and saving acc to database
-    handleAuth("/register")
-    //switches back to login form. need to log in to create session
-    setSignUp(false)
-  }
   
   // pressing "New Game" button on login screen will set signup state to true which will render this form
 
@@ -109,6 +101,18 @@ const LoginPage = () => {
     }
   };
 
+  const handleRegister = () =>{
+    //passing in /register route to handleAuth , creating and saving acc to database
+    if (!regProjectId && !projectName) {
+      setCreateProj(true);
+    } else {
+      // passing in /register route to handleAuth , creating and saving acc to database
+      handleAuth("/register");
+      // switches back to login form. need to log in to create session
+      setSignUp(false);
+    }
+  }
+
   const renderCreateProjForm = () => {
       return (
         <div className="login">
@@ -119,12 +123,17 @@ const LoginPage = () => {
                 name="projectName" // Unique name attribute
                 id="projectName"   // Unique id attribute
             ></input>
-          <button className = 'create-project' onClick={() => handleAuth("/register")}>Create Project</button>
+          <button className = 'create-project' onClick={() => handleCreateProject()}>Create Project</button>
           <button onClick={() =>  setCreateProj(false)} >Go Back</button>
         </div>
       );
   };
 
+  //creates user but leads to login screen 
+const handleCreateProject = () => {
+  setSignUp(false)
+  handleAuth('/register')
+}
   
   return (
     <div className="login-container">

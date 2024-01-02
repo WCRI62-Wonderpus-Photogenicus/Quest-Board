@@ -6,7 +6,7 @@ const userController = {};
 
 userController.addProject = async (req, res, next) => {
 
-  const projectsId  = req.body.projectsId;
+  let projectsId  = req.body.projectsId;
 
   
     // Ensure projects_id is provided and valid
