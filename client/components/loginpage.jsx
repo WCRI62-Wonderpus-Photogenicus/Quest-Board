@@ -54,15 +54,16 @@ const LoginPage = () => {
   const renderLoginForm = () => {
     return (
       <div className="login">
+        <p className ='title'>Adventurer Credentials</p>
         <input onChange={(e) => setUsername(e.target.value)} placeholder="username"></input>
         <input
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="password"
         ></input>
-        <button onClick={() => handleAuth("/login")}>Sign In</button>
-        <p>If you don't have an account</p>
-        <button onClick={() => setSignUp(true)}>Sign Up</button>
+        <button className = "sign-in-btn" onClick={() => handleAuth("/login")}>Continue</button>
+        <p>Don't have an account?</p>
+        <button className = "sign-up-btn"onClick={() => setSignUp(true)}>New Game</button>
       </div>
     );
   };
@@ -70,7 +71,7 @@ const LoginPage = () => {
   const renderSignUpForm = () => {
     if (signUp) {
       return (
-        <div className="signup">
+        <div className="login">
           <input onChange={(e) => setUsername(e.target.value)} placeholder="username"></input>
           <input
             onChange={(e) => setPassword(e.target.value)}
@@ -88,7 +89,7 @@ const LoginPage = () => {
 
   const renderCreateProjForm = () => {
       return (
-        <div className="create-project">
+        <div className="login">
           <input 
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}

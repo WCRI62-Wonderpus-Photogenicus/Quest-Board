@@ -27,8 +27,8 @@ const App = () => {
             {
                 (currRender === 'homepage') ? <Homepage/> : (currRender === 'animate') ? <></> : <LoginPage />
             } 
-        </div>
-        <div className={`background ${login ? 'zoomed' : ''}`}></div>
+      </div>
+      <div className={`background ${login ? 'zoomed' : ''}`}></div>
      </div>
     )
 }

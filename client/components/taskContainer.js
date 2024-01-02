@@ -116,7 +116,7 @@ const TaskContainer = (props) => {
 
   const renderTaskModal = () => {
     return ( 
-      <div className="task-modal">
+    <div className="task-modal">
       <div className='modal-header'>
        <button onClick={()=> dbDeleteTask(projectsId, taskList[props.id].tasks_id)}>Delete</button>
        <button onClick={() => dispatch(toggleTaskModalActionCreator(false))}>X</button>
@@ -126,7 +126,7 @@ const TaskContainer = (props) => {
      <pre className="desc-input">{desc}</pre>
      <p>Assigned users: {(assignedUsers && assignedUsers.length > 0) ? assignedUsers.join(', ') : 'No one yet!'}</p>
      <button onClick={() => assignSelfToTask(taskList[props.id].tasks_id)}>Put me in, Coach!</button>
-   </div>
+    </div>
     )
   };
 
