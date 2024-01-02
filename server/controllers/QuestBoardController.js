@@ -5,7 +5,6 @@ const questBoardController = {}
 questBoardController.getTasks = async (req,res,next) => {
   //receives the project ID of which we want to retrieve the list of tasks 
     const {projectsId} = req.body
-    console.log("in getTasks:", req.body.projectsId)
     try {
       const params = [projectsId] 
 
@@ -86,6 +85,7 @@ questBoardController.getTasks = async (req,res,next) => {
     //receiving the task ID where we want to update a task desc/name
     const { tasksId, desc, name } = req.body;
     console.log("body", req.body)
+    
     try {
       const params = [desc, name, tasksId];
       //SQL query to update a task desc/name given taskID

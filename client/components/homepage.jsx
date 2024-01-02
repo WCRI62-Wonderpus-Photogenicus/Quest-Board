@@ -19,9 +19,9 @@ const getProjects = async () => {
     const requestOptions = {
       method: "POST",
       headers:  { "Content-Type": "application/json" },
-      body: JSON.stringify({projectsId})
+      body: JSON.stringify({projectsId}),
     };
-    console.log('getting task list associated with projectsId: ', projectsId)
+  
     const response = await fetch("/update", requestOptions)
     const data = await response.json();
     if (!response.ok) throw new Error(data.message || 'Error from server');
@@ -32,7 +32,6 @@ const getProjects = async () => {
   }
 }
   useEffect(()=>{
-    console.log('getting tasks')
     getProjects()
   })
 

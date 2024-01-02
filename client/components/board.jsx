@@ -59,8 +59,7 @@ const Board = () => {
 
   //selecting tasklist from state
   const taskList = useSelector((state) => state.projects.taskList);
-  console.log('this is the current task list', taskList);
-
+  console.log('taskList:', taskList)
   //cards to be rendered
   let cards = [];
 
