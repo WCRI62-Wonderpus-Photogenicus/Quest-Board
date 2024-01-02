@@ -103,6 +103,8 @@
 
 .card-text3{
   margin-top: 30%;
+  margin-left: 10%;
+  font-size: 1.4rem;
 }
 
 .task-card-4 {
@@ -113,7 +115,8 @@
 }
 
 .card-text4{
-  margin-top: 5%;
+  margin-top: 6%;
+  font-size: 1.4rem;
 }
 .task-card-5 {
   background-image: url('./assets/paper5.png');

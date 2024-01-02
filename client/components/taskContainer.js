@@ -124,8 +124,8 @@ const TaskContainer = (props) => {
      </div> 
      <h1>{name}</h1>
      <pre className="desc-input">{desc}</pre>
-     <p>Assigned users: {(assignedUsers && assignedUsers.length > 0) ? assignedUsers.join(', ') : 'No one yet!'}</p>
-     <button onClick={() => assignSelfToTask(taskList[props.id].tasks_id)}>Put me in, Coach!</button>
+     <p>Adventuring Party: {(assignedUsers && assignedUsers.length > 0) ? assignedUsers.join('    , ') : 'No one yet!'}</p>
+     <button onClick={() => assignSelfToTask(taskList[props.id].tasks_id)}>Join Party</button>
     </div>
     )
   };
