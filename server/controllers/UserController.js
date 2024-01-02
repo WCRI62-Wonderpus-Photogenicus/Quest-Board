@@ -3,8 +3,8 @@ const db = require('../models/QuestBoardModels');
 const userController = {};
 
 userController.addProject = async (req, res, next) => {
-  console.log(req.body)  
   let projectsId  = req.body.projectsId;
+  console.log(req.body)
   
     // Ensure projects_id is provided and valid
     if (!projectsId) {

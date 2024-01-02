@@ -3,15 +3,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleLoginActionCreator } from "../actions/actions.js";
 
-//custom react hook that handles onChange events
-// const useInput = ({ start }) => {
-//   const [value, setValue] = useState(start);
-//   const onChange = (e) => {
-//     setValue(e.target.value);
-//   };
-//   return [value, onChange];
-// };
-
 const LoginPage = () => {
   const [signUp, setSignUp] = useState(false);
   const [createProj, setCreateProj] = useState(false);
@@ -24,14 +15,16 @@ const LoginPage = () => {
   // path is passed in as arg (either "/login" or "/register") when it is called by onClick, 
   // Also we now pass projectsID on body for both login and register despite only needing it for register
   // We can do this because, even though the login middleware doesn't use it, the login middleware doesn't care that its there either.
-  // all and all still plenty readable imo...
-  
+
   const handleAuth = async (path) => {
     
+    // leads to creating a project if not inputed during signup or existing in db
     if (signUp && !regProjectId && !projectName) {
       setCreateProj(true)
       return;
     }
+
+    //post request for existing username/pw
     try{
       const requestOptions = {
         method: "POST",
@@ -51,10 +44,11 @@ const LoginPage = () => {
   }
 
 
+  //renders loginform if signup state is false. Browser will always start with this since setSignup is initialized as false
   const renderLoginForm = () => {
     return (
       <div className="login">
-        <p className ='title'>Adventurer Credentials</p>
+        <p className ='title'>Resume Adventure</p>
         <input onChange={(e) => setUsername(e.target.value)} placeholder="username"></input>
         <input
           onChange={(e) => setPassword(e.target.value)}
@@ -62,12 +56,13 @@ const LoginPage = () => {
           placeholder="password"
         ></input>
         <button className = "sign-in-btn" onClick={() => handleAuth("/login")}>Continue</button>
-        <p>Don't have an account?</p>
+        <p className = 'no-account-text'>Don't have an account?</p>
         <button className = "sign-up-btn"onClick={() => setSignUp(true)}>New Game</button>
       </div>
     );
   };
 
+  // pressing "New Game" button on login screen will set signup state to true which will render this form
   const renderSignUpForm = () => {
     if (signUp) {
       return (
@@ -96,15 +91,14 @@ const LoginPage = () => {
                 placeholder="Project Name"
                 name="projectName" // Unique name attribute
                 id="projectName"   // Unique id attribute
-            ></input>git 
-          <button onClick={() => handleAuth("/register")}>Create Project</button>
+            ></input>
+          <button className = 'create-project' onClick={() => handleAuth("/register")}>Create Project</button>
           <button onClick={() =>  setCreateProj(false)} >Go Back</button>
         </div>
       );
   };
 
   
-
   return (
     <div className="login-container">
       {(signUp && createProj) ? renderCreateProjForm() : (signUp) ? renderSignUpForm() : renderLoginForm()}

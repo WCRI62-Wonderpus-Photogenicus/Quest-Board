@@ -57,10 +57,6 @@ const Board = () => {
 
 
 
-
-
-
-  
   //selecting tasklist from state
   const taskList = useSelector((state) => state.projects.taskList);
   console.log('this is the current task list', taskList);
@@ -72,8 +68,8 @@ const Board = () => {
   const maxLengthOfTaskList = Math.min(taskList.length, 9);
 
   for (let i = 0; i < maxLengthOfTaskList; i++) {
-    // const style = Math.floor(Math.random() * 8) + 1;
-    const style = (i % 8) + 1;
+    // const style = Math.floor(Math.random() * 8) + 1;  //uncomment to make cards random (like every time the array loads, random)
+    const style = (i % 8) + 1; // uncomment to make card styles appear in order?
     cards.push(<TaskCard key={i} style={style} taskList={taskList[i]} />);
   }
 

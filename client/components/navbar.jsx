@@ -7,9 +7,10 @@ const dispatch = useDispatch()
 
   return (
     <div id='title'>
+      <div></div>
             <div className="nav-bar">
               <div>
-                <button onClick={() => dispatch(toggleLoginActionCreator(false))}>Sign Out</button>
+                <button className = 'signout' onClick={() => dispatch(toggleLoginActionCreator(false))}>Sign Out</button>
               </div> 
             </div>
     </div>
