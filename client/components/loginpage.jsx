@@ -105,7 +105,7 @@ const LoginPage = () => {
   
 
   return (
-    <div className="login">
+    <div className="login-container">
       {(signUp && createProj) ? renderCreateProjForm() : (signUp) ? renderSignUpForm() : renderLoginForm()}
     </div>
   );

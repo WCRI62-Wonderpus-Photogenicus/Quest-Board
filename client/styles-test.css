@@ -9,7 +9,9 @@
   /* margin: 0;
   padding:0; */
 }
-
+ body {
+  margin: 0px;
+ }
 
 
 .app{
@@ -20,40 +22,25 @@
   position: absolute;
   top: 0;
   left: 0;
+  /* border: 5px solid white */
 }
 
 .app-container{
   position: relative;
-  width: 99.1vw; 
+  width: 99.5vw;
   aspect-ratio: 16/9;
-  height: 98.6vh;
+  /* height: 99.5vh; */
   border: 5px solid red;
   margin: 0; 
 }
 
 
-
-/* 
-/* zoren's animations
-#bg {
-  transform: scale(1)
-}
-
-#bg.zoom {
-  transition: 0.5s all ease-in;
-  transform:scale(5)
-} */ 
-
-
-
-
-
 .background {
   background-image: url('./assets/questboard_blur.png');
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
+  height: 100%; 
+  width: 100%; 
   background-position: center;
-  /* background-repeat: no-repeat; */
+  background-repeat: no-repeat;
   background-size: cover;
   transition: transform 2s ease-in-out;
   top: 0;
@@ -222,6 +209,7 @@
   border: solid 3px red;
 }
 
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -230,9 +218,10 @@
   /* height:50vh ; 
   width: 50vw ; */
   position: absolute;
-  margin-top: 60vh;
-  /*margin-right: 25%; */
-  margin-left: 75vh; 
+  top: 46%;
+  left: 36.5%;
+  width: 30%;
+  height: 30%;
 
 }
 
