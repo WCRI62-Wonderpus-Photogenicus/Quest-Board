@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import TaskContainer from './taskContainer.js';
 
 const Board = () => {
-  const imgURL =
-    'https://cdn.discordapp.com/attachments/1106400138143997952/1189797718831398972/umlaut42_wooden_framed_blank_fantasy_quest_board_wooden_frame_s_ad8c856b-9c0a-48ae-8d96-985e3b6a1b2e.png?ex=659f7879&is=658d0379&hm=4da8ac7b153d9b55aabb46da7403ced49166581c9533d68a4a4972af2891e360&';
+  // const imgURL =
+  //   'https://cdn.discordapp.com/attachments/1106400138143997952/1189797718831398972/umlaut42_wooden_framed_blank_fantasy_quest_board_wooden_frame_s_ad8c856b-9c0a-48ae-8d96-985e3b6a1b2e.png?ex=659f7879&is=658d0379&hm=4da8ac7b153d9b55aabb46da7403ced49166581c9533d68a4a4972af2891e360&';
 
   // from interact.js (https://interactjs.io/)
   // target elements with the "draggable" class
@@ -17,7 +17,7 @@ const Board = () => {
     modifiers: [
       interact.modifiers.restrictRect({
         restriction: 'parent',
-        endOnly: true,
+        endOnly: false,
       }),
     ],
     // enable autoScroll
@@ -57,11 +57,7 @@ const Board = () => {
 
 
 
-
-
-
-  
-  //selecting task from state
+  //selecting tasklist from state
   const taskList = useSelector((state) => state.projects.taskList);
   console.log('this is the current task list', taskList);
 
@@ -72,7 +68,9 @@ const Board = () => {
   const maxLengthOfTaskList = Math.min(taskList.length, 9);
 
   for (let i = 0; i < maxLengthOfTaskList; i++) {
-    cards.push(<TaskCard key={i} taskList={taskList[i]} />);
+    // const style = Math.floor(Math.random() * 8) + 1;  //uncomment to make cards random (like every time the array loads, random)
+    const style = (i % 8) + 1; // uncomment to make card styles appear in order?
+    cards.push(<TaskCard key={i} style={style} taskList={taskList[i]} />);
   }
 
   const toggleTaskModal = useSelector(

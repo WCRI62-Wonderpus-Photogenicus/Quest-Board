@@ -19,7 +19,8 @@ const projectsReducer = (state = initialState, action) => {
       ...state, 
       loginStatus: action.payload.bool,       //checks login status if true or false (true = renders homepage, false = renders login page)
       userId: action.payload.userId,          //checks for userId
-      projectsId: action.payload.projectsId   //renders the projects associated with userId   
+      projectsId: action.payload.projectsId,  //renders the projects associated with userId 
+      taskModalBoolean: false                 //makes sure a task modal is never open on login or logout
     }  
     
     //adds a *mostly* empty object to the end of our TaskList Array in order to edit it and save a new task to our database

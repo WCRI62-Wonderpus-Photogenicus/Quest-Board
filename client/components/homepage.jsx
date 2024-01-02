@@ -1,6 +1,6 @@
- import React from 'react';
- import Board from './board.jsx'; 
- import Navbar from './navbar.jsx';
+import React from 'react';
+import Board from './board.jsx'; 
+import Navbar from './navbar.jsx';
 import Progressbar from './progress-bar.jsx';
 import TaskListContainer from './TaskListContainer.jsx';
 import {useEffect} from 'react'
@@ -13,7 +13,7 @@ import { updateTaskListActionCreator } from "../actions/actions.js";
   const projectsId = useSelector(state => state.projects.projectsId)
   const dispatch = useDispatch()
 
-
+//requesting for projectId from db to be rendered on homepage
 const getProjects = async () => {
   try{
     const requestOptions = {
@@ -39,9 +39,7 @@ const getProjects = async () => {
    return (
     <div id='homepage-container'>
     <Navbar />
-      <div id='progress-container'>Progress:</div>
-      <div id='status-bar'>status bar</div>
-    {/* <Progressbar />   */}
+    <Progressbar />  
     <TaskListContainer />
     <Board />
     </div>

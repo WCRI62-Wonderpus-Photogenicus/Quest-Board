@@ -1,5 +1,72 @@
+@font-face {
+  font-family: 'OldSchoolAdventures';
+  src: url('./assets/OldSchoolAdventures-42j9.ttf') format('truetype');
+}
+
 * {
   overflow: hidden;
+  font-family: 'OldSchoolAdventures', sans-serif;
+  /* margin: 0;
+  padding:0; */
+}
+
+
+
+.app{
+  /* border: 10px solid red; */
+  height: 100%;
+  width: 100%;
+  /* aspect-ratio:  */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.app-container{
+  position: relative;
+  width: 99.1vw; 
+  aspect-ratio: 16/9;
+  height: 98.6vh;
+  border: 5px solid red;
+  margin: 0; 
+}
+
+
+
+/* 
+/* zoren's animations
+#bg {
+  transform: scale(1)
+}
+
+#bg.zoom {
+  transition: 0.5s all ease-in;
+  transform:scale(5)
+} */ 
+
+
+
+
+
+.background {
+  background-image: url('./assets/questboard_blur.png');
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  transition: transform 2s ease-in-out;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.zoomed {
+  transform: scale(1.8) translate(3.5%, -15.25%); /* Zoom level */
+  /* background-position: 0% 90%; Adjust for desired pan effect */
+  
+  
 }
 
 .draggable {
@@ -16,16 +83,16 @@
 }
 
 #homepage-container {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: 95vh;
   display: grid;
   grid-template-columns: 0.2fr 1fr;
-  grid-template-rows: 0.05fr 0.02fr 1fr;
+  grid-template-rows: 0.05fr 1fr 0.02fr;
   grid-gap: 5px;
   grid-template-areas:
     'title title'
-    'progress status'
-    'task-list board';
+    'task-list board'
+    'status status';
 }
 
 #title {
@@ -50,6 +117,12 @@
   justify-content: space-between;
 }
 
+#progress-bar-container {
+  grid-area: status;
+  height: 20px;
+  border: 2px solid black;
+}
+
 #status-bar {
   grid-area: status;
   height: 20px;
@@ -62,6 +135,7 @@
   border: 2px solid black;
 }
 #board-container {
+  margin: .7% 8.5% 1.5% 11.2%;
   position: relative;
   display: flex;
   grid-area: board;
@@ -72,29 +146,6 @@
     overflow: hidden;  */
 }
 
-/* #board-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain; 
-}
- */
-
-/* .task-modal {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 50%;
-  width: 50%;
-  border: solid 3px green;
-  z-index: 2;
-  position: absolute;
-  align-self: center;
-  background-color: white;
-} */
-
 .task-modal {
   position: absolute;
   top: 50%;
@@ -102,7 +153,7 @@
   transform: translate(-50%, -50%); /* Center the modal */
   width: 60%; /* Adjust as needed */
   height: 60%; /* Adjust as needed */
-  border: 3px solid green;
+  border: 3px outset silver;
   background-color: white;
   padding: 20px;
   z-index: 2; /* Ensure it's on top of other components */
@@ -133,18 +184,31 @@
 
 #task-list-container {
   display: flex;
+  box-shadow: 4px 4px 4px;
   flex-direction: column;
-  border: 1px solid red;
+  border: 3px outset silver; /* Solid silver border */
+  border-radius: 1%;
+}
+
+#task-list-inner {
+  flex-grow: 1;
+  background: linear-gradient(rgba(102, 97, 247, 0.7), rgba(17, 9, 242, 0.7)); /* Gradient with transparency */
+  background-clip: padding-box; /* Ensures the background only fills the padding area, not the border */
 }
 
 .task-list-item {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  height: 30px;
+  height: 40px;
   margin: 5px;
-  font-size: 10px;
+  font-size: .50rem;
+  font-weight: bold;
+  color: white;
   border: 1px solid black;
+  font-family: 'OldSchoolAdventures', sans-serif;
+  font-size: 12rm;
+  /* opacity: 1; */
   /* cursor: 'pointer' */
 }
 
@@ -158,14 +222,25 @@
   border: solid 3px red;
 }
 
-.login {
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 3px solid yellow; 
+  /* height:50vh ; 
+  width: 50vw ; */
+  position: absolute;
+  margin-top: 60vh;
+  /*margin-right: 25%; */
+  margin-left: 75vh; 
+
 }
+
+
 
 .signUp {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
