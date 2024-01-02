@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { toggleLoginActionCreator } from "../actions/actions.js";
 
@@ -33,18 +33,37 @@ const LoginPage = () => {
       };
       const response = await fetch(path, requestOptions)
       const data = await response.json();
-
+      
       if (!response.ok) throw new Error(data.message || 'Error from server');
-
-      console.log(data);
-      dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
+      
+      if (path === '/login') {
+        dispatch(toggleLoginActionCreator(true, data.projectsId, data.userId));
+      }
+  
     } catch (error) {
       console.log("error accessing database");
     }
   }
 
 
+
+  useEffect(()=> {
+    const checkSession = async () => {
+        try {
+            const sessionResponse = await fetch('/login', {credentials: "include"});// {credentials: "include"} is needed to receive and store session cookie id in browser
+            const sessionData = await sessionResponse.json();
+            console.log('sessionData:', sessionData)
+            //res.locals is being served which contains the data the session's user property (check userController.checkSession in api.js)
+            dispatch(toggleLoginActionCreator(sessionData.loginStatus, sessionData.projectsId, sessionData.userId))
+        } catch (err) {
+            console.log('error during checkSessionStatus', err);
+        }
+    }
+    checkSession();
+   }, []);
+
   //renders loginform if signup state is false. Browser will always start with this since setSignup is initialized as false
+
   const renderLoginForm = () => {
     return (
       <div className="login">
@@ -62,7 +81,15 @@ const LoginPage = () => {
     );
   };
 
+  const handleRegister = () =>{
+    //passing in /register route to handleAuth , creating and saving acc to database
+    handleAuth("/register")
+    //switches back to login form. need to log in to create session
+    setSignUp(false)
+  }
+  
   // pressing "New Game" button on login screen will set signup state to true which will render this form
+
   const renderSignUpForm = () => {
     if (signUp) {
       return (
@@ -74,7 +101,7 @@ const LoginPage = () => {
             placeholder="password"
           ></input>
           <input onChange={(e) => setRegProjectId(e.target.value)} placeholder="project ID (optional)"></input>
-          <button onClick={() => handleAuth("/register")}>Create Account</button>
+          <button onClick={() => handleRegister()}>Create Account</button>
           <p>If already have an account</p>
           <button onClick={() => setSignUp(false)}>Login</button>
         </div>
